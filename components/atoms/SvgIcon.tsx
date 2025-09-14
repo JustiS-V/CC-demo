@@ -3,10 +3,11 @@
  * Supports custom SVG files and system icons
  */
 
+import type React from 'react';
+import type { SvgProps } from 'react-native-svg';
+
 import { Colors } from '@/constants/theme/colors';
 import { useColorScheme } from '@/hooks/use-color-scheme';
-import React from 'react';
-import { SvgProps } from 'react-native-svg';
 
 export interface SvgIconProps extends Omit<SvgProps, 'width' | 'height'> {
   /** Icon size */
@@ -29,7 +30,7 @@ export const SvgIcon: React.FC<SvgIconProps> = ({
 }) => {
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme ?? 'light'];
-  
+
   const iconColor = color || colors.icon;
 
   // If source (SVG file) is provided, use it

@@ -3,6 +3,7 @@
 ## 📋 What You Need to Do
 
 ### 1. Copy Configuration File
+
 ```bash
 cp .env.example .env
 ```
@@ -52,15 +53,15 @@ grep -E "^[A-Z_]+=$" .env
 
 ### Firebase Configuration Values
 
-| Variable | Description | Where to Find |
-|----------|-------------|---------------|
-| `FIREBASE_API_KEY` | Firebase API key | Project Settings → General → Web API Key |
-| `FIREBASE_AUTH_DOMAIN` | Authentication domain | Project Settings → General → Project ID |
-| `FIREBASE_PROJECT_ID` | Project identifier | Project Settings → General → Project ID |
-| `FIREBASE_STORAGE_BUCKET` | Storage bucket | Project Settings → General → Storage bucket |
-| `FIREBASE_MESSAGING_SENDER_ID` | Messaging sender ID | Project Settings → General → Sender ID |
-| `FIREBASE_APP_ID` | App identifier | Project Settings → General → App ID |
-| `FIREBASE_MEASUREMENT_ID` | Analytics ID | Project Settings → General → Measurement ID |
+| Variable                       | Description           | Where to Find                               |
+| ------------------------------ | --------------------- | ------------------------------------------- |
+| `FIREBASE_API_KEY`             | Firebase API key      | Project Settings → General → Web API Key    |
+| `FIREBASE_AUTH_DOMAIN`         | Authentication domain | Project Settings → General → Project ID     |
+| `FIREBASE_PROJECT_ID`          | Project identifier    | Project Settings → General → Project ID     |
+| `FIREBASE_STORAGE_BUCKET`      | Storage bucket        | Project Settings → General → Storage bucket |
+| `FIREBASE_MESSAGING_SENDER_ID` | Messaging sender ID   | Project Settings → General → Sender ID      |
+| `FIREBASE_APP_ID`              | App identifier        | Project Settings → General → App ID         |
+| `FIREBASE_MEASUREMENT_ID`      | Analytics ID          | Project Settings → General → Measurement ID |
 
 ## 🔐 Authentication Setup
 
@@ -109,10 +110,11 @@ NODE_ENV=production
 ### Common Issues
 
 1. **Variables not loading**
+
    ```bash
    # Check babel.config.js
    cat babel.config.js
-   
+
    # Should contain:
    plugins: [
      ['module:react-native-dotenv', {
@@ -123,19 +125,21 @@ NODE_ENV=production
    ```
 
 2. **Firebase not initialized**
+
    ```bash
    # Check .env file exists
    ls -la .env
-   
+
    # Check variables are not empty
    grep -v "^#" .env | grep -v "^$"
    ```
 
 3. **Import errors**
+
    ```typescript
    // Check import statement
    import { FIREBASE_API_KEY } from '@env';
-   
+
    // Verify types
    declare module '@env' {
      export const FIREBASE_API_KEY: string;
@@ -169,6 +173,7 @@ console.log('Config:', config);
 After setting up environment variables:
 
 1. **Restart development server**
+
    ```bash
    npm start -- --clear
    ```

@@ -7,6 +7,7 @@ This document will help solve typical problems when developing and using Crazy C
 ### Firebase Not Initializing
 
 **Symptoms:**
+
 - Error "Firebase not initialized"
 - App doesn't start
 - Authorization problems
@@ -30,6 +31,7 @@ npm start -- --clear
 ### Environment Variables Not Loading
 
 **Symptoms:**
+
 - Variables are undefined
 - Import errors @env
 
@@ -52,6 +54,7 @@ npm start -- --clear
 ### SMS Code Not Arriving
 
 **Check:**
+
 1. **Number format:** Must be international (+7...)
 2. **Firebase Console:** Phone Authentication enabled
 3. **Test numbers:** For development add number to Firebase
@@ -61,13 +64,14 @@ npm start -- --clear
 ```typescript
 // Correct number format
 const phoneNumber = '+79123456789'; // ✅ Correct
-const phoneNumber = '79123456789';  // ❌ Wrong
-const phoneNumber = '9123456789';   // ❌ Wrong
+const phoneNumber = '79123456789'; // ❌ Wrong
+const phoneNumber = '9123456789'; // ❌ Wrong
 ```
 
 ### Email Authorization Not Working
 
 **Check:**
+
 1. **Firebase Console:** Email/Password enabled
 2. **Domain:** Added to Authorized domains
 3. **Email:** Correct format
@@ -83,6 +87,7 @@ const phoneNumber = '9123456789';   // ❌ Wrong
 ### User Cannot Logout
 
 **Symptoms:**
+
 - "Logout" button doesn't work
 - User remains authorized
 
@@ -107,6 +112,7 @@ try {
 ### App Not Starting
 
 **Symptoms:**
+
 - White screen
 - Console errors
 - App crashes
@@ -131,6 +137,7 @@ npm install -g @expo/cli@latest
 ### Slow Performance
 
 **Causes:**
+
 - Many open applications
 - Slow internet connection
 - Firebase problems
@@ -147,6 +154,7 @@ expo start --localhost
 ### Navigation Errors
 
 **Symptoms:**
+
 - Screen doesn't open
 - Routing errors
 - Tab problems
@@ -174,6 +182,7 @@ export default function HomeScreen() {
 ### TypeScript Errors
 
 **Symptoms:**
+
 - Type errors
 - Import problems
 - Unknown types
@@ -198,6 +207,7 @@ declare module '@env' {
 ### Style Problems
 
 **Symptoms:**
+
 - Styles not applied
 - StyleSheet errors
 - Theme problems
@@ -215,6 +225,7 @@ import { Colors } from '@/constants/theme/colors';
 ### Icon Problems
 
 **Symptoms:**
+
 - Icons not displaying
 - IconSymbol errors
 
@@ -234,6 +245,7 @@ import { Icon } from '@/components/atoms';
 ### Firebase Unavailable
 
 **Symptoms:**
+
 - Request timeouts
 - Connection errors
 - Authorization problems
@@ -254,6 +266,7 @@ cat .env
 ### CORS Errors (Web)
 
 **Symptoms:**
+
 - CORS errors in browser
 - Requests blocked
 
@@ -308,11 +321,13 @@ console.log('API Key:', process.env.FIREBASE_API_KEY);
 ## 🆘 When to Ask for Help
 
 ### Create Issue if:
+
 - Problem not solved by standard methods
 - Error reproduces consistently
 - Problem is critical for app functionality
 
 ### Include in Issue:
+
 1. **Problem description**
 2. **Steps to reproduce**
 3. **Expected behavior**

@@ -48,3 +48,11 @@ app-example
 
 # VS Code editor
 .vscode/
+
+# Code quality tools
+.eslintcache
+.prettiercache
+biome.json.bak
+
+# Husky
+.husky/_

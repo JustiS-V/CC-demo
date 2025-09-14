@@ -52,14 +52,14 @@ import { ChefHatIcon, StarIcon, HeartIcon } from '@/components/atoms';
 import { IconButton, ChefHatButton } from '@/components/atoms';
 
 // Generic icon button
-<IconButton 
-  iconName="plus" 
+<IconButton
+  iconName="plus"
   text="Add Recipe"
   onPress={() => console.log('Add recipe')}
 />
 
 // Preset icon button
-<ChefHatButton 
+<ChefHatButton
   text="Chef"
   onPress={() => console.log('Chef')}
 />
@@ -69,33 +69,33 @@ import { IconButton, ChefHatButton } from '@/components/atoms';
 
 ### SVG Icons (Cooking Theme)
 
-| Icon | Name | Description | Usage |
-|------|------|-------------|-------|
-| `chef-hat` | Chef Hat | Chef's hat | Professional cooking |
-| `recipe-book` | Recipe Book | Recipe book | Recipe management |
-| `cooking-pot` | Cooking Pot | Cooking pot | Cooking process |
-| `fork-knife` | Fork & Knife | Cutlery | Dining, utensils |
-| `timer` | Timer | Cooking timer | Time management |
-| `star` | Star | Rating star | Ratings, favorites |
-| `heart` | Heart | Heart icon | Likes, favorites |
-| `search` | Search | Search icon | Search functionality |
-| `plus` | Plus | Plus icon | Add, create |
-| `user` | User | User icon | Profile, account |
+| Icon          | Name         | Description   | Usage                |
+| ------------- | ------------ | ------------- | -------------------- |
+| `chef-hat`    | Chef Hat     | Chef's hat    | Professional cooking |
+| `recipe-book` | Recipe Book  | Recipe book   | Recipe management    |
+| `cooking-pot` | Cooking Pot  | Cooking pot   | Cooking process      |
+| `fork-knife`  | Fork & Knife | Cutlery       | Dining, utensils     |
+| `timer`       | Timer        | Cooking timer | Time management      |
+| `star`        | Star         | Rating star   | Ratings, favorites   |
+| `heart`       | Heart        | Heart icon    | Likes, favorites     |
+| `search`      | Search       | Search icon   | Search functionality |
+| `plus`        | Plus         | Plus icon     | Add, create          |
+| `user`        | User         | User icon     | Profile, account     |
 
 ### System Icons (iOS/SF Symbols)
 
-| Icon | Description | Usage |
-|------|-------------|-------|
-| `house.fill` | Home | Navigation, home screen |
-| `magnifyingglass` | Search | Search functionality |
-| `person.fill` | Profile | User profile |
-| `gear` | Settings | Settings, configuration |
-| `pencil` | Edit | Edit functionality |
-| `trash` | Delete | Delete, remove |
-| `share` | Share | Share functionality |
-| `heart.fill` | Favorite | Favorites, likes |
-| `star.fill` | Rating | Ratings, reviews |
-| `checkmark` | Checkmark | Success, confirmation |
+| Icon              | Description | Usage                   |
+| ----------------- | ----------- | ----------------------- |
+| `house.fill`      | Home        | Navigation, home screen |
+| `magnifyingglass` | Search      | Search functionality    |
+| `person.fill`     | Profile     | User profile            |
+| `gear`            | Settings    | Settings, configuration |
+| `pencil`          | Edit        | Edit functionality      |
+| `trash`           | Delete      | Delete, remove          |
+| `share`           | Share       | Share functionality     |
+| `heart.fill`      | Favorite    | Favorites, likes        |
+| `star.fill`       | Rating      | Ratings, reviews        |
+| `checkmark`       | Checkmark   | Success, confirmation   |
 
 ## 🛠 Creating New SVG Icons
 
@@ -179,14 +179,14 @@ export { NewIcon } from './Icon';
 
 ```tsx
 // Custom styles
-<Icon 
-  name="chef-hat" 
-  size={24} 
-  color="#FF6B6B"
-  style={{ 
+<Icon
+  name='chef-hat'
+  size={24}
+  color='#FF6B6B'
+  style={{
     marginRight: 8,
-    opacity: 0.8 
-  }} 
+    opacity: 0.8,
+  }}
 />
 ```
 
@@ -196,22 +196,22 @@ export { NewIcon } from './Icon';
 
 ```tsx
 // Text with icon
-<IconButton 
-  iconName="plus" 
+<IconButton
+  iconName="plus"
   text="Add Recipe"
   onPress={() => console.log('Add')}
 />
 
 // Icon only
-<IconButton 
-  iconName="heart" 
+<IconButton
+  iconName="heart"
   iconOnly
   onPress={() => console.log('Like')}
 />
 
 // Custom size and color
-<IconButton 
-  iconName="star" 
+<IconButton
+  iconName="star"
   iconSize={20}
   iconColor="#FFD700"
   text="Rate"
@@ -224,16 +224,13 @@ export { NewIcon } from './Icon';
 ```tsx
 const RecipeCard = ({ recipe }) => (
   <View>
-    <Icon 
-      name={recipe.isFavorite ? 'heart' : 'heart'} 
+    <Icon
+      name={recipe.isFavorite ? 'heart' : 'heart'}
       color={recipe.isFavorite ? 'error' : 'muted'}
       onPress={() => toggleFavorite(recipe.id)}
     />
-    
-    <Icon 
-      name="star" 
-      color={getDifficultyColor(recipe.difficulty)}
-    />
+
+    <Icon name='star' color={getDifficultyColor(recipe.difficulty)} />
   </View>
 );
 ```
@@ -332,7 +329,7 @@ const ICON_SIZES = {
   large: 32,
 } as const;
 
-<Icon name="star" size={ICON_SIZES.medium} />
+<Icon name='star' size={ICON_SIZES.medium} />;
 ```
 
 ## 🔍 Troubleshooting

@@ -40,24 +40,22 @@ export const LANGUAGES = {
 export type LanguageCode = keyof typeof LANGUAGES;
 
 // Initialize i18n
-i18n
-  .use(initReactI18next)
-  .init({
-    resources,
-    lng: Localization.locale.split('-')[0] || 'en', // Use device locale or fallback to English
-    fallbackLng: 'en',
-    
-    interpolation: {
-      escapeValue: false, // React already escapes values
-    },
-    
-    // React Native specific options
-    react: {
-      useSuspense: false,
-    },
-    
-    // Debug mode (only in development)
-    debug: __DEV__,
-  });
+i18n.use(initReactI18next).init({
+  resources,
+  lng: Localization.locale.split('-')[0] || 'en', // Use device locale or fallback to English
+  fallbackLng: 'en',
+
+  interpolation: {
+    escapeValue: false, // React already escapes values
+  },
+
+  // React Native specific options
+  react: {
+    useSuspense: false,
+  },
+
+  // Debug mode (only in development)
+  debug: __DEV__,
+});
 
 export default i18n;

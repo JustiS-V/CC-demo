@@ -3,9 +3,11 @@
  * Combination of Button and Icon components
  */
 
+import type React from 'react';
+
 import { ICON_SIZES } from '@/lib/icons';
-import React from 'react';
-import { Button, ButtonProps } from './Button';
+
+import { Button, type ButtonProps } from './Button';
 import { Icon } from './Icon';
 
 export interface IconButtonProps extends Omit<ButtonProps, 'children'> {
@@ -30,7 +32,8 @@ export const IconButton: React.FC<IconButtonProps> = ({
   size = 'md',
   ...buttonProps
 }) => {
-  const iconSizeValue = typeof iconSize === 'number' ? iconSize : ICON_SIZES[iconSize];
+  const iconSizeValue =
+    typeof iconSize === 'number' ? iconSize : ICON_SIZES[iconSize];
 
   return (
     <Button
@@ -39,11 +42,7 @@ export const IconButton: React.FC<IconButtonProps> = ({
       leftIcon={iconOnly ? undefined : iconName}
     >
       {iconOnly ? (
-        <Icon
-          name={iconName}
-          size={iconSizeValue}
-          color={iconColor}
-        />
+        <Icon name={iconName} size={iconSizeValue} color={iconColor} />
       ) : (
         text
       )}
@@ -52,42 +51,42 @@ export const IconButton: React.FC<IconButtonProps> = ({
 };
 
 // Preset icon buttons
-export const ChefHatButton: React.FC<Omit<IconButtonProps, 'iconName'>> = (props) => (
-  <IconButton iconName="chef-hat" {...props} />
-);
+export const ChefHatButton: React.FC<
+  Omit<IconButtonProps, 'iconName'>
+> = props => <IconButton iconName="chef-hat" {...props} />;
 
-export const RecipeBookButton: React.FC<Omit<IconButtonProps, 'iconName'>> = (props) => (
-  <IconButton iconName="recipe-book" {...props} />
-);
+export const RecipeBookButton: React.FC<
+  Omit<IconButtonProps, 'iconName'>
+> = props => <IconButton iconName="recipe-book" {...props} />;
 
-export const CookingPotButton: React.FC<Omit<IconButtonProps, 'iconName'>> = (props) => (
-  <IconButton iconName="cooking-pot" {...props} />
-);
+export const CookingPotButton: React.FC<
+  Omit<IconButtonProps, 'iconName'>
+> = props => <IconButton iconName="cooking-pot" {...props} />;
 
-export const ForkKnifeButton: React.FC<Omit<IconButtonProps, 'iconName'>> = (props) => (
-  <IconButton iconName="fork-knife" {...props} />
-);
+export const ForkKnifeButton: React.FC<
+  Omit<IconButtonProps, 'iconName'>
+> = props => <IconButton iconName="fork-knife" {...props} />;
 
-export const TimerButton: React.FC<Omit<IconButtonProps, 'iconName'>> = (props) => (
-  <IconButton iconName="timer" {...props} />
-);
+export const TimerButton: React.FC<
+  Omit<IconButtonProps, 'iconName'>
+> = props => <IconButton iconName="timer" {...props} />;
 
-export const StarButton: React.FC<Omit<IconButtonProps, 'iconName'>> = (props) => (
-  <IconButton iconName="star" {...props} />
-);
+export const StarButton: React.FC<
+  Omit<IconButtonProps, 'iconName'>
+> = props => <IconButton iconName="star" {...props} />;
 
-export const HeartButton: React.FC<Omit<IconButtonProps, 'iconName'>> = (props) => (
-  <IconButton iconName="heart" {...props} />
-);
+export const HeartButton: React.FC<
+  Omit<IconButtonProps, 'iconName'>
+> = props => <IconButton iconName="heart" {...props} />;
 
-export const SearchButton: React.FC<Omit<IconButtonProps, 'iconName'>> = (props) => (
-  <IconButton iconName="search" {...props} />
-);
+export const SearchButton: React.FC<
+  Omit<IconButtonProps, 'iconName'>
+> = props => <IconButton iconName="search" {...props} />;
 
-export const PlusButton: React.FC<Omit<IconButtonProps, 'iconName'>> = (props) => (
-  <IconButton iconName="plus" {...props} />
-);
+export const PlusButton: React.FC<
+  Omit<IconButtonProps, 'iconName'>
+> = props => <IconButton iconName="plus" {...props} />;
 
-export const UserButton: React.FC<Omit<IconButtonProps, 'iconName'>> = (props) => (
-  <IconButton iconName="user" {...props} />
-);
+export const UserButton: React.FC<
+  Omit<IconButtonProps, 'iconName'>
+> = props => <IconButton iconName="user" {...props} />;

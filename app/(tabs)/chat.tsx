@@ -1,10 +1,16 @@
+import React, { useState } from 'react';
+import {
+  ScrollView,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
+
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
-import React, { useState } from 'react';
-import { ScrollView, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 
 export default function ChatScreen() {
   const [message, setMessage] = useState('');
@@ -24,15 +30,15 @@ export default function ChatScreen() {
         text: message,
         isBot: false,
       };
-      
+
       setMessages([...messages, newMessage]);
       setMessage('');
-      
+
       // Bot response simulation
       setTimeout(() => {
         const botResponse = {
           id: messages.length + 2,
-          text: 'Great idea! Here\'s a recipe for you:\n\n🍳 Simple Recipe\n\nIngredients:\n- Main ingredient\n- Spices\n- Oil\n\nInstructions:\n1. Prepare ingredients\n2. Heat the pan\n3. Cook until ready\n\nEnjoy your meal!',
+          text: "Great idea! Here's a recipe for you:\n\n🍳 Simple Recipe\n\nIngredients:\n- Main ingredient\n- Spices\n- Oil\n\nInstructions:\n1. Prepare ingredients\n2. Heat the pan\n3. Cook until ready\n\nEnjoy your meal!",
           isBot: true,
         };
         setMessages(prev => [...prev, botResponse]);
@@ -51,8 +57,11 @@ export default function ChatScreen() {
         </ThemedText>
       </ThemedView>
 
-      <ScrollView style={styles.messagesContainer} showsVerticalScrollIndicator={false}>
-        {messages.map((msg) => (
+      <ScrollView
+        style={styles.messagesContainer}
+        showsVerticalScrollIndicator={false}
+      >
+        {messages.map(msg => (
           <ThemedView
             key={msg.id}
             style={[

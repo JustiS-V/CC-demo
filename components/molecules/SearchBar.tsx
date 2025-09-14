@@ -3,12 +3,14 @@
  * Consists of Input atom and additional functionality
  */
 
+import type React from 'react';
+import { useState } from 'react';
+import { StyleSheet, type ViewStyle } from 'react-native';
+
 import { Button } from '@/components/atoms/Button';
-import { Input, InputProps } from '@/components/atoms/Input';
+import { Input, type InputProps } from '@/components/atoms/Input';
 import { ThemedView } from '@/components/themed-view';
 import { Sizes } from '@/constants/styles/spacing';
-import React, { useState } from 'react';
-import { StyleSheet, ViewStyle } from 'react-native';
 
 export interface SearchBarProps extends Omit<InputProps, 'rightIcon'> {
   /** Show search button */
@@ -44,7 +46,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   const handleTextChange = (text: string) => {
     setSearchQuery(text);
     onChangeText?.(text);
-    
+
     // Debounce for automatic search
     if (onSearch && debounceMs > 0) {
       setTimeout(() => {
@@ -79,7 +81,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
         rightIcon={getRightIcon()}
         containerStyle={styles.inputContainer}
       />
-      
+
       {showSearchButton && (
         <Button
           size="md"

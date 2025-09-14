@@ -3,13 +3,24 @@
  * Foundation for all input fields in the application
  */
 
+import React, { forwardRef } from 'react';
+import {
+  StyleSheet,
+  TextInput,
+  type TextInputProps,
+  type TextStyle,
+  type ViewStyle,
+} from 'react-native';
+
 import { ThemedView } from '@/components/themed-view';
 import { IconSymbol } from '@/components/ui/icon-symbol';
-import { BorderRadius, ComponentHeights, Sizes } from '@/constants/styles/spacing';
+import {
+  BorderRadius,
+  ComponentHeights,
+  Sizes,
+} from '@/constants/styles/spacing';
 import { Colors } from '@/constants/theme/colors';
 import { useColorScheme } from '@/hooks/use-color-scheme';
-import React, { forwardRef } from 'react';
-import { StyleSheet, TextInput, TextInputProps, TextStyle, ViewStyle } from 'react-native';
 
 export interface InputProps extends TextInputProps {
   /** Input field size */
@@ -32,94 +43,101 @@ export interface InputProps extends TextInputProps {
   containerStyle?: ViewStyle;
 }
 
-export const Input = forwardRef<TextInput, InputProps>(({
-  size = 'md',
-  variant = 'outline',
-  state = 'default',
-  leftIcon,
-  rightIcon,
-  hint,
-  label,
-  fullWidth = false,
-  containerStyle,
-  style,
-  ...props
-}, ref) => {
-  const colorScheme = useColorScheme();
-  const colors = Colors[colorScheme ?? 'light'];
-
-  const containerStyles: ViewStyle = [
-    styles.container,
-    fullWidth && styles.fullWidth,
-    containerStyle,
-  ];
-
-  const inputContainerStyles: ViewStyle = [
-    styles.inputContainer,
-    styles[size],
-    styles[variant],
+export const Input = forwardRef<TextInput, InputProps>(
+  (
     {
-      backgroundColor: getBackgroundColor(variant, colors),
-      borderColor: getBorderColor(state, colors),
+      size = 'md',
+      variant = 'outline',
+      state = 'default',
+      leftIcon,
+      rightIcon,
+      hint,
+      label,
+      fullWidth = false,
+      containerStyle,
+      style,
+      ...props
     },
-    state === 'error' && styles.errorBorder,
-    state === 'success' && styles.successBorder,
-    state === 'warning' && styles.warningBorder,
-  ];
+    ref
+  ) => {
+    const colorScheme = useColorScheme();
+    const colors = Colors[colorScheme ?? 'light'];
 
-  const inputStyles: TextStyle = [
-    styles.input,
-    {
-      color: colors.text,
-    },
-    style,
-  ];
+    const containerStyles: ViewStyle = [
+      styles.container,
+      fullWidth && styles.fullWidth,
+      containerStyle,
+    ];
 
-  const iconColor = getIconColor(state, colors);
+    const inputContainerStyles: ViewStyle = [
+      styles.inputContainer,
+      styles[size],
+      styles[variant],
+      {
+        backgroundColor: getBackgroundColor(variant, colors),
+        borderColor: getBorderColor(state, colors),
+      },
+      state === 'error' && styles.errorBorder,
+      state === 'success' && styles.successBorder,
+      state === 'warning' && styles.warningBorder,
+    ];
 
-  return (
-    <ThemedView style={containerStyles}>
-      {label && (
-        <ThemedText style={[styles.label, { color: colors.text }]}>
-          {label}
-        </ThemedText>
-      )}
-      
-      <ThemedView style={inputContainerStyles}>
-        {leftIcon && (
-          <IconSymbol 
-            name={leftIcon} 
-            size={getIconSize(size)} 
-            color={iconColor} 
-            style={styles.leftIcon}
-          />
+    const inputStyles: TextStyle = [
+      styles.input,
+      {
+        color: colors.text,
+      },
+      style,
+    ];
+
+    const iconColor = getIconColor(state, colors);
+
+    return (
+      <ThemedView style={containerStyles}>
+        {label && (
+          <ThemedText style={[styles.label, { color: colors.text }]}>
+            {label}
+          </ThemedText>
         )}
-        
-        <TextInput
-          ref={ref}
-          style={inputStyles}
-          placeholderTextColor={colors.tabIconDefault}
-          {...props}
-        />
-        
-        {rightIcon && (
-          <IconSymbol 
-            name={rightIcon} 
-            size={getIconSize(size)} 
-            color={iconColor} 
-            style={styles.rightIcon}
+
+        <ThemedView style={inputContainerStyles}>
+          {leftIcon && (
+            <IconSymbol
+              name={leftIcon}
+              size={getIconSize(size)}
+              color={iconColor}
+              style={styles.leftIcon}
+            />
+          )}
+
+          <TextInput
+            ref={ref}
+            style={inputStyles}
+            placeholderTextColor={colors.tabIconDefault}
+            {...props}
           />
+
+          {rightIcon && (
+            <IconSymbol
+              name={rightIcon}
+              size={getIconSize(size)}
+              color={iconColor}
+              style={styles.rightIcon}
+            />
+          )}
+        </ThemedView>
+
+        {hint && (
+          <ThemedText
+            style={[styles.hint, { color: getHintColor(state, colors) }]}
+          >
+            {hint}
+          </ThemedText>
         )}
       </ThemedView>
-      
-      {hint && (
-        <ThemedText style={[styles.hint, { color: getHintColor(state, colors) }]}>
-          {hint}
-        </ThemedText>
-      )}
-    </ThemedView>
-  );
-});
+    );
+  }
+);
 
 // Helper functions
 const getBackgroundColor = (variant: string, colors: any): string => {
@@ -192,20 +210,20 @@ const styles = StyleSheet.create({
   fullWidth: {
     width: '100%',
   },
-  
+
   label: {
     fontSize: 14,
     fontWeight: '500',
     marginBottom: Sizes.xs,
   },
-  
+
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     borderRadius: BorderRadius.md,
     borderWidth: 1,
   },
-  
+
   // Sizes
   sm: {
     height: ComponentHeights.input.sm,
@@ -219,12 +237,12 @@ const styles = StyleSheet.create({
     height: ComponentHeights.input.lg,
     paddingHorizontal: Sizes.lg,
   },
-  
+
   // Variants
   default: {},
   outline: {},
   filled: {},
-  
+
   // States
   errorBorder: {
     borderWidth: 2,
@@ -235,20 +253,20 @@ const styles = StyleSheet.create({
   warningBorder: {
     borderWidth: 2,
   },
-  
+
   input: {
     flex: 1,
     fontSize: 16,
     paddingVertical: 0,
   },
-  
+
   leftIcon: {
     marginRight: Sizes.sm,
   },
   rightIcon: {
     marginLeft: Sizes.sm,
   },
-  
+
   hint: {
     fontSize: 12,
     marginTop: Sizes.xs,

@@ -20,27 +20,27 @@ export const Colors = {
     background: '#FFFFFF',
     surface: '#F8F9FA',
     tint: tintColorLight,
-    
+
     // Icons and UI elements
     icon: '#6B7280',
     tabIconDefault: '#9CA3AF',
     tabIconSelected: tintColorLight,
-    
+
     // Borders and separators
     border: '#E5E7EB',
     separator: '#F3F4F6',
-    
+
     // Semantic colors
     success: successColor,
     warning: warningColor,
     error: errorColor,
     info: infoColor,
-    
+
     // Additional colors for recipes
     primary: '#FF6B6B',
     secondary: '#4ECDC4',
     accent: '#45B7D1',
-    
+
     // Shadows and overlays
     shadow: 'rgba(0, 0, 0, 0.1)',
     overlay: 'rgba(0, 0, 0, 0.5)',
@@ -51,27 +51,27 @@ export const Colors = {
     background: '#111827',
     surface: '#1F2937',
     tint: tintColorDark,
-    
+
     // Icons and UI elements
     icon: '#9CA3AF',
     tabIconDefault: '#6B7280',
     tabIconSelected: tintColorDark,
-    
+
     // Borders and separators
     border: '#374151',
     separator: '#2D3748',
-    
+
     // Semantic colors
     success: successColor,
     warning: warningColor,
     error: errorColor,
     info: infoColor,
-    
+
     // Additional colors for recipes
     primary: '#FF6B6B',
     secondary: '#4ECDC4',
     accent: '#45B7D1',
-    
+
     // Shadows and overlays
     shadow: 'rgba(0, 0, 0, 0.3)',
     overlay: 'rgba(0, 0, 0, 0.7)',

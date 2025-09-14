@@ -1,0 +1,6 @@
+echo "🔍 Running code quality checks..."
+
+# Запускаем lint-staged для проверки и исправления файлов
+npx lint-staged
+
+echo "✅ Code quality checks completed!"

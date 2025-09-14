@@ -3,22 +3,45 @@
  * Extended version of ThemedText with additional styles
  */
 
-import { ThemedText, ThemedTextProps } from '@/components/themed-text';
+import type React from 'react';
+import type { TextStyle } from 'react-native';
+
+import { ThemedText, type ThemedTextProps } from '@/components/themed-text';
 import { Colors } from '@/constants/theme/colors';
-import { FontSizes, FontWeights, TextStyles } from '@/constants/theme/typography';
+import {
+  FontSizes,
+  FontWeights,
+  TextStyles,
+} from '@/constants/theme/typography';
 import { useColorScheme } from '@/hooks/use-color-scheme';
-import React from 'react';
-import { TextStyle } from 'react-native';
 
 export interface TextProps extends ThemedTextProps {
   /** Preset text style */
-  variant?: 'h1' | 'h2' | 'h3' | 'h4' | 'body' | 'bodyLarge' | 'bodySmall' | 'caption' | 'button' | 'label';
+  variant?:
+    | 'h1'
+    | 'h2'
+    | 'h3'
+    | 'h4'
+    | 'body'
+    | 'bodyLarge'
+    | 'bodySmall'
+    | 'caption'
+    | 'button'
+    | 'label';
   /** Font size */
   size?: keyof typeof FontSizes;
   /** Font weight */
   weight?: keyof typeof FontWeights;
   /** Text color */
-  color?: 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info' | 'muted' | 'default';
+  color?:
+    | 'primary'
+    | 'secondary'
+    | 'success'
+    | 'warning'
+    | 'error'
+    | 'info'
+    | 'muted'
+    | 'default';
   /** Text alignment */
   align?: 'left' | 'center' | 'right' | 'justify';
   /** Text decoration */
@@ -51,23 +74,23 @@ export const Text: React.FC<TextProps> = ({
   const textStyle: TextStyle = [
     // Apply preset style if specified
     variant && TextStyles[variant],
-    
+
     // Apply custom size and weight
     size && { fontSize: FontSizes[size] },
     weight && { fontWeight: FontWeights[weight] },
-    
+
     // Apply color
     { color: getTextColor(color, colors) },
-    
+
     // Apply alignment
     { textAlign: align },
-    
+
     // Apply decoration
     { textDecorationLine: decoration },
-    
+
     // Apply transformation
     { textTransform: transform },
-    
+
     // Apply custom styles
     style,
   ];
@@ -108,38 +131,38 @@ const getTextColor = (color: string, colors: any): string => {
 };
 
 // Preset components for convenience
-export const Heading1: React.FC<Omit<TextProps, 'variant'>> = (props) => (
+export const Heading1: React.FC<Omit<TextProps, 'variant'>> = props => (
   <Text variant="h1" {...props} />
 );
 
-export const Heading2: React.FC<Omit<TextProps, 'variant'>> = (props) => (
+export const Heading2: React.FC<Omit<TextProps, 'variant'>> = props => (
   <Text variant="h2" {...props} />
 );
 
-export const Heading3: React.FC<Omit<TextProps, 'variant'>> = (props) => (
+export const Heading3: React.FC<Omit<TextProps, 'variant'>> = props => (
   <Text variant="h3" {...props} />
 );
 
-export const Heading4: React.FC<Omit<TextProps, 'variant'>> = (props) => (
+export const Heading4: React.FC<Omit<TextProps, 'variant'>> = props => (
   <Text variant="h4" {...props} />
 );
 
-export const Body: React.FC<Omit<TextProps, 'variant'>> = (props) => (
+export const Body: React.FC<Omit<TextProps, 'variant'>> = props => (
   <Text variant="body" {...props} />
 );
 
-export const BodyLarge: React.FC<Omit<TextProps, 'variant'>> = (props) => (
+export const BodyLarge: React.FC<Omit<TextProps, 'variant'>> = props => (
   <Text variant="bodyLarge" {...props} />
 );
 
-export const BodySmall: React.FC<Omit<TextProps, 'variant'>> = (props) => (
+export const BodySmall: React.FC<Omit<TextProps, 'variant'>> = props => (
   <Text variant="bodySmall" {...props} />
 );
 
-export const Caption: React.FC<Omit<TextProps, 'variant'>> = (props) => (
+export const Caption: React.FC<Omit<TextProps, 'variant'>> = props => (
   <Text variant="caption" {...props} />
 );
 
-export const Label: React.FC<Omit<TextProps, 'variant'>> = (props) => (
+export const Label: React.FC<Omit<TextProps, 'variant'>> = props => (
   <Text variant="label" {...props} />
 );

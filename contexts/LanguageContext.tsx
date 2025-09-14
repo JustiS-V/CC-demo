@@ -3,10 +3,18 @@
  * Manages language switching and provides translation utilities
  */
 
-import { LANGUAGES, LanguageCode } from '@/lib/i18n';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import React, { ReactNode, createContext, useContext, useEffect, useState } from 'react';
+import type React from 'react';
+import {
+  createContext,
+  type ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import { useTranslation } from 'react-i18next';
+
+import { LANGUAGES, type LanguageCode } from '@/lib/i18n';
 
 interface LanguageContextType {
   currentLanguage: LanguageCode;
@@ -16,7 +24,9 @@ interface LanguageContextType {
   isRTL: boolean;
 }
 
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+const LanguageContext = createContext<LanguageContextType | undefined>(
+  undefined
+);
 
 interface LanguageProviderProps {
   children: ReactNode;
@@ -24,7 +34,9 @@ interface LanguageProviderProps {
 
 const LANGUAGE_STORAGE_KEY = '@crazy_cooker_language';
 
-export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
+export const LanguageProvider: React.FC<LanguageProviderProps> = ({
+  children,
+}) => {
   const { i18n, t } = useTranslation();
   const [currentLanguage, setCurrentLanguage] = useState<LanguageCode>('en');
   const [isRTL, setIsRTL] = useState(false);
@@ -55,13 +67,13 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
     try {
       // Change i18n language
       await i18n.changeLanguage(language);
-      
+
       // Update state
       setCurrentLanguage(language);
-      
+
       // Save to storage
       await AsyncStorage.setItem(LANGUAGE_STORAGE_KEY, language);
-      
+
       console.log(`Language changed to: ${language}`);
     } catch (error) {
       console.error('Error changing language:', error);

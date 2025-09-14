@@ -3,13 +3,23 @@
  * Foundation for all buttons in the application
  */
 
+import type React from 'react';
+import {
+  StyleSheet,
+  TouchableOpacity,
+  type TouchableOpacityProps,
+  type ViewStyle,
+} from 'react-native';
+
 import { ThemedText } from '@/components/themed-text';
 import { IconSymbol } from '@/components/ui/icon-symbol';
-import { BorderRadius, ComponentHeights, Shadows } from '@/constants/styles/spacing';
+import {
+  BorderRadius,
+  ComponentHeights,
+  Shadows,
+} from '@/constants/styles/spacing';
 import { Colors } from '@/constants/theme/colors';
 import { useColorScheme } from '@/hooks/use-color-scheme';
-import React from 'react';
-import { StyleSheet, TouchableOpacity, TouchableOpacityProps, ViewStyle } from 'react-native';
 
 export interface ButtonProps extends TouchableOpacityProps {
   /** Button size */
@@ -66,38 +76,34 @@ export const Button: React.FC<ButtonProps> = ({
       {...props}
     >
       {leftIcon && !loading && (
-        <IconSymbol 
-          name={leftIcon} 
-          size={getIconSize(size)} 
-          color={textColor} 
+        <IconSymbol
+          name={leftIcon}
+          size={getIconSize(size)}
+          color={textColor}
           style={styles.leftIcon}
         />
       )}
-      
+
       {loading && (
-        <IconSymbol 
-          name="arrow.clockwise" 
-          size={getIconSize(size)} 
-          color={textColor} 
+        <IconSymbol
+          name="arrow.clockwise"
+          size={getIconSize(size)}
+          color={textColor}
           style={styles.loadingIcon}
         />
       )}
-      
-      <ThemedText 
-        style={[
-          styles.text,
-          styles[`${size}Text`],
-          { color: textColor }
-        ]}
+
+      <ThemedText
+        style={[styles.text, styles[`${size}Text`], { color: textColor }]}
       >
         {children}
       </ThemedText>
-      
+
       {rightIcon && !loading && (
-        <IconSymbol 
-          name={rightIcon} 
-          size={getIconSize(size)} 
-          color={textColor} 
+        <IconSymbol
+          name={rightIcon}
+          size={getIconSize(size)}
+          color={textColor}
           style={styles.rightIcon}
         />
       )}
@@ -137,9 +143,13 @@ const getBorderColor = (variant: string, colors: any): string => {
   }
 };
 
-const getTextColor = (variant: string, colors: any, disabled?: boolean): string => {
+const getTextColor = (
+  variant: string,
+  colors: any,
+  disabled?: boolean
+): string => {
   if (disabled) return colors.tabIconDefault;
-  
+
   switch (variant) {
     case 'primary':
     case 'danger':
@@ -176,7 +186,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     ...Shadows.sm,
   },
-  
+
   // Sizes
   sm: {
     height: ComponentHeights.button.sm,
@@ -193,14 +203,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     gap: 10,
   },
-  
+
   // Variants
   primary: {},
   secondary: {},
   outline: {},
   ghost: {},
   danger: {},
-  
+
   // States
   disabled: {
     opacity: 0.5,
@@ -208,7 +218,7 @@ const styles = StyleSheet.create({
   fullWidth: {
     width: '100%',
   },
-  
+
   // Text
   text: {
     fontWeight: '600',
@@ -222,7 +232,7 @@ const styles = StyleSheet.create({
   lgText: {
     fontSize: 18,
   },
-  
+
   // Icons
   leftIcon: {
     marginRight: 4,

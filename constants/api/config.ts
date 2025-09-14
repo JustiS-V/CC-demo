@@ -35,7 +35,7 @@ export const API_ENDPOINTS = {
     verifyEmail: '/auth/verify-email',
     verifyPhone: '/auth/verify-phone',
   },
-  
+
   // Recipes
   recipes: {
     list: '/recipes',
@@ -48,7 +48,7 @@ export const API_ENDPOINTS = {
     popular: '/recipes/popular',
     recent: '/recipes/recent',
   },
-  
+
   // Users
   users: {
     profile: '/users/profile',
@@ -58,14 +58,14 @@ export const API_ENDPOINTS = {
     removeFavorite: (recipeId: string) => `/users/favorites/${recipeId}`,
     recipes: '/users/recipes',
   },
-  
+
   // AI generation
   ai: {
     generateRecipe: '/ai/generate-recipe',
     improveRecipe: '/ai/improve-recipe',
     suggestIngredients: '/ai/suggest-ingredients',
   },
-  
+
   // Media
   media: {
     upload: '/media/upload',
@@ -75,10 +75,10 @@ export const API_ENDPOINTS = {
 
 // Request timeouts (in milliseconds)
 export const API_TIMEOUTS = {
-  default: 10000,      // 10 seconds
-  upload: 30000,       // 30 seconds for file uploads
-  ai: 60000,          // 60 seconds for AI requests
-  auth: 15000,        // 15 seconds for authentication
+  default: 10000, // 10 seconds
+  upload: 30000, // 30 seconds for file uploads
+  ai: 60000, // 60 seconds for AI requests
+  auth: 15000, // 15 seconds for authentication
 } as const;
 
 // HTTP status codes
@@ -105,17 +105,17 @@ export const ERROR_CODES = {
   PHONE_ALREADY_EXISTS: 'PHONE_ALREADY_EXISTS',
   INVALID_TOKEN: 'INVALID_TOKEN',
   TOKEN_EXPIRED: 'TOKEN_EXPIRED',
-  
+
   // Recipes
   RECIPE_NOT_FOUND: 'RECIPE_NOT_FOUND',
   RECIPE_ACCESS_DENIED: 'RECIPE_ACCESS_DENIED',
   INVALID_RECIPE_DATA: 'INVALID_RECIPE_DATA',
-  
+
   // AI
   AI_SERVICE_UNAVAILABLE: 'AI_SERVICE_UNAVAILABLE',
   AI_REQUEST_FAILED: 'AI_REQUEST_FAILED',
   AI_RATE_LIMIT_EXCEEDED: 'AI_RATE_LIMIT_EXCEEDED',
-  
+
   // General
   NETWORK_ERROR: 'NETWORK_ERROR',
   VALIDATION_ERROR: 'VALIDATION_ERROR',
@@ -129,16 +129,16 @@ export const LIMITS = {
   RECIPE_DESCRIPTION_MAX_LENGTH: 1000,
   RECIPE_INGREDIENTS_MAX_COUNT: 50,
   RECIPE_STEPS_MAX_COUNT: 20,
-  
+
   // Users
   USERNAME_MIN_LENGTH: 3,
   USERNAME_MAX_LENGTH: 30,
   PASSWORD_MIN_LENGTH: 8,
-  
+
   // Files
   IMAGE_MAX_SIZE: 5 * 1024 * 1024, // 5MB
   IMAGE_ALLOWED_TYPES: ['image/jpeg', 'image/png', 'image/webp'],
-  
+
   // AI requests
   AI_REQUEST_MAX_LENGTH: 500,
   AI_REQUESTS_PER_HOUR: 10,
@@ -147,8 +147,8 @@ export const LIMITS = {
 // Cache settings
 export const CACHE_CONFIG = {
   // Cache lifetime (in milliseconds)
-  recipes: 5 * 60 * 1000,        // 5 minutes
-  userProfile: 10 * 60 * 1000,    // 10 minutes
-  categories: 30 * 60 * 1000,    // 30 minutes
+  recipes: 5 * 60 * 1000, // 5 minutes
+  userProfile: 10 * 60 * 1000, // 10 minutes
+  categories: 30 * 60 * 1000, // 30 minutes
   popularRecipes: 15 * 60 * 1000, // 15 minutes
 } as const;

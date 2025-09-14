@@ -64,8 +64,8 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 const testLogin = async () => {
   try {
     const userCredential = await signInWithEmailAndPassword(
-      auth, 
-      'test@example.com', 
+      auth,
+      'test@example.com',
       'password123'
     );
     console.log('Login successful:', userCredential.user);
@@ -84,7 +84,7 @@ import { signInWithPhoneNumber } from 'firebase/auth';
 const testPhoneAuth = async () => {
   try {
     const confirmationResult = await signInWithPhoneNumber(
-      auth, 
+      auth,
       '+79123456789'
     );
     // Enter verification code
@@ -127,7 +127,7 @@ service cloud.firestore {
     match /users/{userId} {
       allow read, write: if request.auth != null && request.auth.uid == userId;
     }
-    
+
     // Recipes are public for reading
     match /recipes/{recipeId} {
       allow read: if true;

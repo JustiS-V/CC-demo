@@ -3,14 +3,15 @@
  * Useful for development and testing of icons
  */
 
+import React from 'react';
+import { ScrollView, StyleSheet } from 'react-native';
+
 import { Icon } from '@/components/atoms/Icon';
 import { Caption, Heading3 } from '@/components/atoms/Text';
 import { ThemedView } from '@/components/themed-view';
 import { Sizes } from '@/constants/styles/spacing';
 import { Colors } from '@/constants/theme/colors';
 import { useColorScheme } from '@/hooks/use-color-scheme';
-import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
 
 interface IconItem {
   name: string;
@@ -83,11 +84,7 @@ export const IconGrid: React.FC<IconGridProps> = ({
 
   const renderIconItem = (icon: IconItem) => (
     <ThemedView key={icon.name} style={styles.iconItem}>
-      <Icon
-        name={icon.name}
-        size={iconSize}
-        color={colors.icon}
-      />
+      <Icon name={icon.name} size={iconSize} color={colors.icon} />
       <Caption style={styles.iconLabel} numberOfLines={2}>
         {icon.label}
       </Caption>
@@ -100,11 +97,16 @@ export const IconGrid: React.FC<IconGridProps> = ({
   const renderIconGroup = (category: string, icons: IconItem[]) => (
     <ThemedView key={category} style={styles.group}>
       <Heading3 style={styles.groupTitle}>{category}</Heading3>
-      <ThemedView style={[styles.grid, { 
-        flexDirection: 'row', 
-        flexWrap: 'wrap',
-        justifyContent: 'space-between'
-      }]}>
+      <ThemedView
+        style={[
+          styles.grid,
+          {
+            flexDirection: 'row',
+            flexWrap: 'wrap',
+            justifyContent: 'space-between',
+          },
+        ]}
+      >
         {icons.map(renderIconItem)}
       </ThemedView>
     </ThemedView>

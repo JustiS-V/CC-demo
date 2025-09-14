@@ -9,16 +9,16 @@ const BASE_SIZE = 8;
 // Sizes
 export const Sizes = {
   // Padding and spacing (multiples of 8px)
-  xs: BASE_SIZE * 0.5,    // 4px
-  sm: BASE_SIZE,          // 8px
-  md: BASE_SIZE * 2,      // 16px
-  lg: BASE_SIZE * 3,      // 24px
-  xl: BASE_SIZE * 4,      // 32px
-  '2xl': BASE_SIZE * 5,   // 40px
-  '3xl': BASE_SIZE * 6,   // 48px
-  '4xl': BASE_SIZE * 8,   // 64px
-  '5xl': BASE_SIZE * 10,  // 80px
-  '6xl': BASE_SIZE * 12,  // 96px
+  xs: BASE_SIZE * 0.5, // 4px
+  sm: BASE_SIZE, // 8px
+  md: BASE_SIZE * 2, // 16px
+  lg: BASE_SIZE * 3, // 24px
+  xl: BASE_SIZE * 4, // 32px
+  '2xl': BASE_SIZE * 5, // 40px
+  '3xl': BASE_SIZE * 6, // 48px
+  '4xl': BASE_SIZE * 8, // 64px
+  '5xl': BASE_SIZE * 10, // 80px
+  '6xl': BASE_SIZE * 12, // 96px
 } as const;
 
 // Border radius

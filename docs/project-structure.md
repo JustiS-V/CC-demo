@@ -273,20 +273,24 @@ types/
 ## 🔄 File Naming Conventions
 
 ### Components
+
 - **PascalCase** for component files: `Button.tsx`, `RecipeCard.tsx`
 - **camelCase** for utility files: `iconUtils.ts`, `authContext.tsx`
 
 ### Assets
+
 - **kebab-case** for SVG files: `chef-hat.svg`, `recipe-book.svg`
 - **PascalCase** for component exports: `ChefHatIcon`, `RecipeBookIcon`
 
 ### Directories
+
 - **lowercase** for most directories: `components/`, `constants/`
 - **PascalCase** for React component directories: `atoms/`, `molecules/`
 
 ## 📦 Import/Export Patterns
 
 ### Component Exports
+
 ```typescript
 // Individual component export
 export { Button } from './Button';
@@ -299,6 +303,7 @@ export default Button;
 ```
 
 ### Index File Pattern
+
 ```typescript
 // components/atoms/index.ts
 export { Button } from './Button';
@@ -308,6 +313,7 @@ export { Icon } from './Icon';
 ```
 
 ### Path Aliases
+
 ```typescript
 // Use @ alias for root imports
 import { Button } from '@/components/atoms';
@@ -318,6 +324,7 @@ import { AuthContext } from '@/contexts/AuthContext';
 ## 🎯 Best Practices
 
 ### File Organization
+
 1. **Group related files** in the same directory
 2. **Use index files** for clean imports
 3. **Follow naming conventions** consistently
@@ -325,6 +332,7 @@ import { AuthContext } from '@/contexts/AuthContext';
 5. **Separate concerns** (UI, logic, data)
 
 ### Import Organization
+
 1. **External libraries** first
 2. **Internal components** second
 3. **Types and interfaces** last
@@ -332,6 +340,7 @@ import { AuthContext } from '@/contexts/AuthContext';
 5. **Group related imports** together
 
 ### Component Structure
+
 1. **Props interface** at the top
 2. **Component implementation** in the middle
 3. **Styles** at the bottom

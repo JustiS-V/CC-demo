@@ -3,6 +3,16 @@
  * Allows users to change the app language
  */
 
+import type React from 'react';
+import { useState } from 'react';
+import {
+  FlatList,
+  Modal,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { IconSymbol } from '@/components/ui/icon-symbol';
@@ -10,8 +20,6 @@ import { BorderRadius, Shadows, Sizes } from '@/constants/styles/spacing';
 import { Colors } from '@/constants/theme/colors';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useColorScheme } from '@/hooks/use-color-scheme';
-import React, { useState } from 'react';
-import { FlatList, Modal, StyleSheet, TouchableOpacity, View } from 'react-native';
 
 interface LanguageSwitcherProps {
   /** Show as button or inline */
@@ -51,7 +59,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
 
   const renderLanguageItem = ({ item }: { item: typeof currentLang }) => {
     const isSelected = item.code === currentLanguage;
-    
+
     return (
       <TouchableOpacity
         style={[
@@ -64,9 +72,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
         onPress={() => handleLanguageChange(item.code)}
       >
         <View style={styles.languageItemContent}>
-          {showFlag && (
-            <ThemedText style={styles.flag}>{item.flag}</ThemedText>
-          )}
+          {showFlag && <ThemedText style={styles.flag}>{item.flag}</ThemedText>}
           {showName && (
             <View style={styles.languageTextContainer}>
               <ThemedText
@@ -80,7 +86,11 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
               <ThemedText
                 style={[
                   styles.languageCode,
-                  { color: isSelected ? colors.background : colors.tabIconDefault },
+                  {
+                    color: isSelected
+                      ? colors.background
+                      : colors.tabIconDefault,
+                  },
                 ]}
               >
                 {item.name}
@@ -89,11 +99,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
           )}
         </View>
         {isSelected && (
-          <IconSymbol
-            name="checkmark"
-            size={20}
-            color={colors.background}
-          />
+          <IconSymbol name="checkmark" size={20} color={colors.background} />
         )}
       </TouchableOpacity>
     );
@@ -102,14 +108,16 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
   if (variant === 'inline') {
     return (
       <View style={[styles.inlineContainer, style]}>
-        {Object.values(availableLanguages).map((lang) => (
+        {Object.values(availableLanguages).map(lang => (
           <TouchableOpacity
             key={lang.code}
             style={[
               styles.inlineItem,
               {
-                backgroundColor: lang.code === currentLanguage ? colors.tint : colors.surface,
-                borderColor: lang.code === currentLanguage ? colors.tint : colors.border,
+                backgroundColor:
+                  lang.code === currentLanguage ? colors.tint : colors.surface,
+                borderColor:
+                  lang.code === currentLanguage ? colors.tint : colors.border,
               },
             ]}
             onPress={() => handleLanguageChange(lang.code)}
@@ -121,7 +129,12 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
               <ThemedText
                 style={[
                   styles.inlineText,
-                  { color: lang.code === currentLanguage ? colors.background : colors.text },
+                  {
+                    color:
+                      lang.code === currentLanguage
+                        ? colors.background
+                        : colors.text,
+                  },
                 ]}
               >
                 {lang.code.toUpperCase()}
@@ -149,7 +162,9 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
       >
         <View style={styles.buttonContent}>
           {showFlag && (
-            <ThemedText style={styles.buttonFlag}>{currentLang.flag}</ThemedText>
+            <ThemedText style={styles.buttonFlag}>
+              {currentLang.flag}
+            </ThemedText>
           )}
           {showName && (
             <ThemedText style={[styles.buttonText, { color: colors.text }]}>
@@ -195,7 +210,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
             <FlatList
               data={Object.values(availableLanguages)}
               renderItem={renderLanguageItem}
-              keyExtractor={(item) => item.code}
+              keyExtractor={item => item.code}
               style={styles.languageList}
               showsVerticalScrollIndicator={false}
             />

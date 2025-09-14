@@ -25,12 +25,15 @@ export default function TabLayout() {
           paddingBottom: 20,
           paddingTop: 10,
         },
-      }}>
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
           title: t('navigation.catalog'),
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="book.fill" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <IconSymbol size={28} name="book.fill" color={color} />
+          ),
         }}
       />
       <Tabs.Screen
@@ -42,7 +45,7 @@ export default function TabLayout() {
               <IconSymbol size={32} name="plus.message.fill" color="white" />
             </View>
           ),
-          tabBarButton: (props) => (
+          tabBarButton: props => (
             <View style={styles.chatButtonContainer}>
               <HapticTab {...props} />
             </View>
@@ -53,7 +56,9 @@ export default function TabLayout() {
         name="profile"
         options={{
           title: t('navigation.profile'),
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="person.fill" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <IconSymbol size={28} name="person.fill" color={color} />
+          ),
         }}
       />
     </Tabs>

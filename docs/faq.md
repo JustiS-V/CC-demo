@@ -3,7 +3,9 @@
 ## 🔧 Setup and Installation
 
 ### Q: App doesn't start after installing dependencies
+
 **A:** Try the following steps:
+
 ```bash
 # Clear cache
 npm start -- --clear
@@ -14,13 +16,17 @@ npm install
 ```
 
 ### Q: Error "Firebase not initialized"
+
 **A:** Check:
+
 1. Does `.env` file exist
 2. Are Firebase variables filled correctly
 3. Did you restart the app after changing `.env`
 
 ### Q: TypeScript errors after installation
-**A:** 
+
+**A:**
+
 ```bash
 # Restart TypeScript server
 # In VS Code: Cmd+Shift+P → "TypeScript: Restart TS Server"
@@ -32,19 +38,25 @@ cat tsconfig.json
 ## 🔐 Authentication Issues
 
 ### Q: SMS code not arriving
+
 **A:** Check:
+
 1. **Phone format:** Must be international (+7...)
 2. **Firebase Console:** Phone Authentication enabled
 3. **Test numbers:** Add your number to Firebase for development
 
 ### Q: Email login not working
+
 **A:** Verify:
+
 1. **Firebase Console:** Email/Password enabled
 2. **Domain:** Added to Authorized domains
 3. **Email format:** Valid email address
 
 ### Q: User cannot logout
+
 **A:** Check AuthContext implementation:
+
 ```typescript
 const { logout } = useAuth();
 try {
@@ -58,19 +70,25 @@ try {
 ## 📱 App Functionality
 
 ### Q: Icons not displaying
+
 **A:** Check:
+
 1. SVG files exist in `assets/icons/svg/`
 2. Metro configuration includes SVG transformer
 3. Icon names are correct
 
 ### Q: Navigation not working
+
 **A:** Verify:
+
 1. File structure matches Expo Router conventions
 2. Components are properly exported
 3. Navigation paths are correct
 
 ### Q: Theme switching not working
+
 **A:** Check:
+
 1. ColorScheme provider is set up
 2. Components use ThemedView/ThemedText
 3. Colors are imported correctly
@@ -78,14 +96,18 @@ try {
 ## 🎨 Customization
 
 ### Q: How to add new icons?
-**A:** 
+
+**A:**
+
 1. Create SVG file in `assets/icons/svg/`
 2. Add to `Icon.tsx` mapping
 3. Create preset component
 4. Update exports
 
 ### Q: How to customize colors?
+
 **A:** Update `constants/theme/colors.ts`:
+
 ```typescript
 export const Colors = {
   light: {
@@ -102,7 +124,9 @@ export const Colors = {
 ```
 
 ### Q: How to add new screens?
-**A:** 
+
+**A:**
+
 1. Create file in `app/` directory
 2. Follow Expo Router conventions
 3. Add navigation if needed
@@ -111,7 +135,9 @@ export const Colors = {
 ## 🚀 Development
 
 ### Q: How to run on physical device?
-**A:** 
+
+**A:**
+
 ```bash
 # Install Expo Go app on your phone
 # Run development server
@@ -123,7 +149,9 @@ expo start --tunnel
 ```
 
 ### Q: How to build for production?
-**A:** 
+
+**A:**
+
 ```bash
 # Build for iOS
 expo build:ios
@@ -136,7 +164,9 @@ expo build:web
 ```
 
 ### Q: How to debug the app?
-**A:** 
+
+**A:**
+
 ```bash
 # Enable debug mode
 expo start --dev-client
@@ -148,7 +178,9 @@ expo start --dev-client
 ## 🔧 Troubleshooting
 
 ### Q: Metro bundler errors
-**A:** 
+
+**A:**
+
 ```bash
 # Clear Metro cache
 npx react-native start --reset-cache
@@ -158,14 +190,18 @@ expo start --clear
 ```
 
 ### Q: Firebase connection issues
+
 **A:** Check:
+
 1. Internet connection
 2. Firebase project status
 3. Configuration variables
 4. Network security settings
 
 ### Q: Performance issues
-**A:** 
+
+**A:**
+
 1. Close other applications
 2. Use release build for testing
 3. Check for memory leaks
@@ -174,14 +210,18 @@ expo start --clear
 ## 📚 Additional Help
 
 ### Q: Where to find more documentation?
+
 **A:** Check the `docs/` folder:
+
 - `README.md` - Project overview
 - `getting-started.md` - Setup guide
 - `troubleshooting.md` - Problem solving
 - `svg-icons.md` - Icon system guide
 
 ### Q: How to contribute to the project?
-**A:** 
+
+**A:**
+
 1. Fork the repository
 2. Create feature branch
 3. Make changes
@@ -189,7 +229,9 @@ expo start --clear
 5. Follow coding standards
 
 ### Q: Where to report bugs?
-**A:** 
+
+**A:**
+
 1. Check existing issues
 2. Create detailed bug report
 3. Include system information
@@ -207,6 +249,7 @@ If you can't find the answer to your question:
 ### Creating a Good Issue
 
 Include:
+
 - **Problem description**
 - **Steps to reproduce**
 - **Expected behavior**

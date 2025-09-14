@@ -3,13 +3,11 @@
  * Centralized access to all application constants
  */
 
-// Theme and styles
-export * from './styles/spacing';
-export * from './theme/colors';
-export * from './theme/typography';
-
 // API configuration
 export * from './api/config';
-
+// Theme and styles
+export * from './styles/spacing';
 // Compatibility with old API
 export { Colors, Fonts } from './theme';
+export * from './theme/colors';
+export * from './theme/typography';

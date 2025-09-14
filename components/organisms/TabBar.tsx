@@ -3,13 +3,14 @@
  * Complex component for tab navigation
  */
 
+import type React from 'react';
+import { StyleSheet, type ViewStyle } from 'react-native';
+
 import { TabButton } from '@/components/molecules/TabButton';
 import { ThemedView } from '@/components/themed-view';
 import { ComponentHeights, Shadows, Sizes } from '@/constants/styles/spacing';
 import { Colors } from '@/constants/theme/colors';
 import { useColorScheme } from '@/hooks/use-color-scheme';
-import React from 'react';
-import { StyleSheet, ViewStyle } from 'react-native';
 
 export interface TabItem {
   /** Unique tab key */
@@ -61,8 +62,10 @@ export const TabBar: React.FC<TabBarProps> = ({
 
   return (
     <ThemedView style={[styles.container, containerStyle]}>
-      <ThemedView style={[styles.tabBar, { backgroundColor: colors.background }]}>
-        {tabs.map((tab) => (
+      <ThemedView
+        style={[styles.tabBar, { backgroundColor: colors.background }]}
+      >
+        {tabs.map(tab => (
           <TabButton
             key={tab.key}
             icon={tab.icon}
@@ -74,17 +77,14 @@ export const TabBar: React.FC<TabBarProps> = ({
             style={styles.tabButton}
           />
         ))}
-        
+
         {showCenterButton && (
           <ThemedView style={styles.centerButtonContainer}>
             <TabButton
               icon={centerButtonIcon}
               iconOnly
               onPress={onCenterButtonPress}
-              style={[
-                styles.centerButton,
-                { backgroundColor: colors.primary }
-              ]}
+              style={[styles.centerButton, { backgroundColor: colors.primary }]}
             />
           </ThemedView>
         )}
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
   },
-  
+
   tabBar: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -111,12 +111,12 @@ const styles = StyleSheet.create({
     paddingTop: Sizes.sm,
     ...Shadows.lg,
   },
-  
+
   tabButton: {
     flex: 1,
     alignItems: 'center',
   },
-  
+
   centerButtonContainer: {
     position: 'absolute',
     top: -20,
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     ...Shadows.xl,
   },
-  
+
   centerButton: {
     width: 60,
     height: 60,

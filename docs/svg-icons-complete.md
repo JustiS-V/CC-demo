@@ -23,20 +23,26 @@ npm install react-native-svg react-native-svg-transformer
 ### Basic Setup
 
 1. **Configure Metro** (`metro.config.js`):
+
 ```javascript
 const { getDefaultConfig } = require('expo/metro-config');
 
 const config = getDefaultConfig(__dirname);
 
 // Add SVG support
-config.transformer.babelTransformerPath = require.resolve('react-native-svg-transformer');
-config.resolver.assetExts = config.resolver.assetExts.filter(ext => ext !== 'svg');
+config.transformer.babelTransformerPath = require.resolve(
+  'react-native-svg-transformer'
+);
+config.resolver.assetExts = config.resolver.assetExts.filter(
+  ext => ext !== 'svg'
+);
 config.resolver.sourceExts = [...config.resolver.sourceExts, 'svg'];
 
 module.exports = config;
 ```
 
 2. **Create TypeScript declarations** (`types/svg.d.ts`):
+
 ```typescript
 declare module '*.svg' {
   import React from 'react';
@@ -62,32 +68,34 @@ declare module '*.svg' {
 ## 🎯 Available Icons
 
 ### SVG Icons (Cooking Theme)
-| Icon | Name | Description | Category |
-|------|------|-------------|----------|
-| `chef-hat` | Chef Hat | Chef's hat | Cooking |
-| `recipe-book` | Recipe Book | Recipe book | Cooking |
-| `cooking-pot` | Cooking Pot | Cooking pot | Cooking |
-| `fork-knife` | Fork & Knife | Cutlery | Cooking |
-| `timer` | Timer | Cooking timer | Cooking |
-| `star` | Star | Rating and evaluation | UI |
-| `heart` | Heart | Favorites and likes | UI |
-| `search` | Search | Recipe search | UI |
-| `plus` | Plus | Addition | UI |
-| `user` | User | User profile | UI |
+
+| Icon          | Name         | Description           | Category |
+| ------------- | ------------ | --------------------- | -------- |
+| `chef-hat`    | Chef Hat     | Chef's hat            | Cooking  |
+| `recipe-book` | Recipe Book  | Recipe book           | Cooking  |
+| `cooking-pot` | Cooking Pot  | Cooking pot           | Cooking  |
+| `fork-knife`  | Fork & Knife | Cutlery               | Cooking  |
+| `timer`       | Timer        | Cooking timer         | Cooking  |
+| `star`        | Star         | Rating and evaluation | UI       |
+| `heart`       | Heart        | Favorites and likes   | UI       |
+| `search`      | Search       | Recipe search         | UI       |
+| `plus`        | Plus         | Addition              | UI       |
+| `user`        | User         | User profile          | UI       |
 
 ### System Icons
-| Icon | Description | Category |
-|------|-------------|----------|
-| `house.fill` | Home | Navigation |
-| `magnifyingglass` | Search | Navigation |
-| `person.fill` | Profile | Navigation |
-| `gear` | Settings | UI |
-| `pencil` | Edit | UI |
-| `trash` | Delete | UI |
-| `share` | Share | UI |
-| `heart.fill` | Favorite | UI |
-| `star.fill` | Rating | UI |
-| `checkmark` | Checkmark | UI |
+
+| Icon              | Description | Category   |
+| ----------------- | ----------- | ---------- |
+| `house.fill`      | Home        | Navigation |
+| `magnifyingglass` | Search      | Navigation |
+| `person.fill`     | Profile     | Navigation |
+| `gear`            | Settings    | UI         |
+| `pencil`          | Edit        | UI         |
+| `trash`           | Delete      | UI         |
+| `share`           | Share       | UI         |
+| `heart.fill`      | Favorite    | UI         |
+| `star.fill`       | Rating      | UI         |
+| `checkmark`       | Checkmark   | UI         |
 
 ## 💻 Usage
 
@@ -98,11 +106,7 @@ declare module '*.svg' {
 ```tsx
 import { Icon } from '@/components/atoms';
 
-<Icon 
-  name="chef-hat" 
-  size={24} 
-  color="#FF6B6B" 
-/>
+<Icon name='chef-hat' size={24} color='#FF6B6B' />;
 ```
 
 #### Preset Icons
@@ -121,21 +125,21 @@ import { ChefHatIcon, StarIcon, HeartIcon } from '@/components/atoms';
 import { IconButton } from '@/components/atoms';
 
 // Button with icon and text
-<IconButton 
-  iconName="plus" 
+<IconButton
+  iconName="plus"
   text="Add Recipe"
   onPress={() => console.log('Add recipe')}
 />
 
 // Icon only
-<IconButton 
-  iconName="heart" 
+<IconButton
+  iconName="heart"
   iconOnly
   onPress={() => console.log('Like')}
 />
 
 // Preset button
-<ChefHatButton 
+<ChefHatButton
   text="Chef"
   onPress={() => console.log('Chef')}
 />
@@ -254,7 +258,7 @@ if (validation.errors.length > 0) {
 ### In RecipeCard
 
 ```tsx
-<RecipeCard 
+<RecipeCard
   recipe={{
     id: '1',
     title: 'Carbonara Pasta',
@@ -262,24 +266,24 @@ if (validation.errors.length > 0) {
     difficulty: 'medium',
     category: 'dinner',
     rating: 4.5,
-    isFavorite: false
+    isFavorite: false,
   }}
-  onPress={(recipe) => console.log('Open recipe:', recipe.title)}
-  onToggleFavorite={(recipe) => console.log('Toggle favorite:', recipe.id)}
+  onPress={recipe => console.log('Open recipe:', recipe.title)}
+  onToggleFavorite={recipe => console.log('Toggle favorite:', recipe.id)}
 />
 ```
 
 ### In Header
 
 ```tsx
-<Header 
-  title="Crazy Cooker"
-  subtitle="Find the perfect recipe"
+<Header
+  title='Crazy Cooker'
+  subtitle='Find the perfect recipe'
   showBackButton={true}
   onBackPress={() => router.back()}
   actions={[
     { icon: 'heart.fill', onPress: () => console.log('Favorites') },
-    { icon: 'gear', onPress: () => console.log('Settings') }
+    { icon: 'gear', onPress: () => console.log('Settings') },
   ]}
 />
 ```
@@ -287,16 +291,16 @@ if (validation.errors.length > 0) {
 ### In TabBar
 
 ```tsx
-<TabBar 
+<TabBar
   tabs={[
     { key: 'home', icon: 'house.fill', label: 'Home' },
     { key: 'search', icon: 'search', label: 'Search' },
-    { key: 'profile', icon: 'user', label: 'Profile' }
+    { key: 'profile', icon: 'user', label: 'Profile' },
   ]}
-  activeTab="home"
-  onTabChange={(tabKey) => console.log('Tab changed:', tabKey)}
+  activeTab='home'
+  onTabChange={tabKey => console.log('Tab changed:', tabKey)}
   showCenterButton={true}
-  centerButtonIcon="plus"
+  centerButtonIcon='plus'
   onCenterButtonPress={() => console.log('Add recipe')}
 />
 ```
@@ -304,10 +308,10 @@ if (validation.errors.length > 0) {
 ### In SearchBar
 
 ```tsx
-<SearchBar 
-  placeholder="Search recipes..."
+<SearchBar
+  placeholder='Search recipes...'
   showSearchButton={true}
-  onSearch={(query) => console.log('Search:', query)}
+  onSearch={query => console.log('Search:', query)}
   onClear={() => console.log('Clear search')}
 />
 ```
@@ -477,7 +481,7 @@ const trackIconUsage = (iconName: string, context: string) => {
 // Preload frequently used icons
 const preloadIcons = async () => {
   const frequentIcons = ['chef-hat', 'star', 'heart', 'search'];
-  
+
   for (const iconName of frequentIcons) {
     // Preload SVG
     await import(`@/assets/icons/svg/${iconName}.svg`);

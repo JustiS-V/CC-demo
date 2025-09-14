@@ -3,12 +3,18 @@
  * Foundation for all cards in the application
  */
 
+import type React from 'react';
+import {
+  StyleSheet,
+  TouchableOpacity,
+  type TouchableOpacityProps,
+  type ViewStyle,
+} from 'react-native';
+
 import { ThemedView } from '@/components/themed-view';
 import { BorderRadius, Shadows, Sizes } from '@/constants/styles/spacing';
 import { Colors } from '@/constants/theme/colors';
 import { useColorScheme } from '@/hooks/use-color-scheme';
-import React from 'react';
-import { StyleSheet, TouchableOpacity, TouchableOpacityProps, ViewStyle } from 'react-native';
 
 export interface CardProps extends TouchableOpacityProps {
   /** Card size */
@@ -49,21 +55,13 @@ export const Card: React.FC<CardProps> = ({
 
   if (pressable) {
     return (
-      <TouchableOpacity
-        style={cardStyle}
-        activeOpacity={0.8}
-        {...props}
-      >
+      <TouchableOpacity style={cardStyle} activeOpacity={0.8} {...props}>
         {children}
       </TouchableOpacity>
     );
   }
 
-  return (
-    <ThemedView style={cardStyle}>
-      {children}
-    </ThemedView>
-  );
+  return <ThemedView style={cardStyle}>{children}</ThemedView>;
 };
 
 // Helper functions
@@ -97,7 +95,7 @@ const styles = StyleSheet.create({
     borderRadius: BorderRadius.lg,
     overflow: 'hidden',
   },
-  
+
   // Sizes
   sm: {
     minHeight: 80,
@@ -108,7 +106,7 @@ const styles = StyleSheet.create({
   lg: {
     minHeight: 160,
   },
-  
+
   // Variants
   default: {
     borderWidth: 0,

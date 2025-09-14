@@ -5,6 +5,7 @@ This document explains how to use the internationalization system in Crazy Cooke
 ## Overview
 
 The app supports multiple languages with automatic detection of the device's locale. Currently supported languages:
+
 - English (en) - Default
 - Russian (ru)
 
@@ -35,10 +36,8 @@ import { useLanguage } from '@/contexts/LanguageContext';
 
 function MyComponent() {
   const { t } = useLanguage();
-  
-  return (
-    <Text>{t('common.loading')}</Text>
-  );
+
+  return <Text>{t('common.loading')}</Text>;
 }
 ```
 
@@ -75,16 +74,17 @@ import { LanguageSwitcher } from '@/components/molecules/LanguageSwitcher';
 <LanguageSwitcher variant="inline" />
 
 // Custom styling
-<LanguageSwitcher 
-  size="lg" 
-  showFlag={true} 
-  showName={true} 
+<LanguageSwitcher
+  size="lg"
+  showFlag={true}
+  showName={true}
 />
 ```
 
 ## Adding New Languages
 
 1. **Create translation file** in `locales/` directory:
+
    ```json
    // locales/es.json
    {
@@ -96,6 +96,7 @@ import { LanguageSwitcher } from '@/components/molecules/LanguageSwitcher';
    ```
 
 2. **Update language configuration** in `lib/i18n.ts`:
+
    ```typescript
    export const LANGUAGES = {
      en: { name: 'English', nativeName: 'English', flag: '🇺🇸' },
@@ -105,11 +106,12 @@ import { LanguageSwitcher } from '@/components/molecules/LanguageSwitcher';
    ```
 
 3. **Import translation** in `lib/i18n.ts`:
+
    ```typescript
    import en from '../locales/en.json';
    import ru from '../locales/ru.json';
    import es from '../locales/es.json'; // New import
-   
+
    const resources = {
      en: { translation: en },
      ru: { translation: ru },
@@ -120,6 +122,7 @@ import { LanguageSwitcher } from '@/components/molecules/LanguageSwitcher';
 ## Adding New Translation Keys
 
 1. **Add to all language files**:
+
    ```json
    // locales/en.json
    {
@@ -127,7 +130,7 @@ import { LanguageSwitcher } from '@/components/molecules/LanguageSwitcher';
        "newKey": "New Value"
      }
    }
-   
+
    // locales/ru.json
    {
      "newSection": {
@@ -204,16 +207,12 @@ import { useLanguage } from '@/contexts/LanguageContext';
 
 function LanguageButton() {
   const { changeLanguage, currentLanguage } = useLanguage();
-  
+
   const switchToRussian = () => {
     changeLanguage('ru');
   };
-  
-  return (
-    <Button onPress={switchToRussian}>
-      Switch to Russian
-    </Button>
-  );
+
+  return <Button onPress={switchToRussian}>Switch to Russian</Button>;
 }
 ```
 

@@ -52,7 +52,7 @@ yarn start
 ### 5. Run on Device
 
 - **iOS:** Install Expo Go app, scan QR code
-- **Android:** Install Expo Go app, scan QR code  
+- **Android:** Install Expo Go app, scan QR code
 - **Web:** Press `w` in terminal or visit localhost
 
 ## 🔧 Development Setup
@@ -98,21 +98,25 @@ crazy-cooker/
 ## 🎯 Key Features
 
 ### Authentication
+
 - Email/password login
 - Phone number verification
 - Secure user sessions
 
 ### Recipe Management
+
 - Browse recipe catalog
 - Search and filter recipes
 - Save favorites
 
 ### AI Integration
+
 - AI-powered recipe generation
 - Smart cooking suggestions
 - Personalized recommendations
 
 ### Cross-Platform
+
 - iOS native app
 - Android native app
 - Web application
@@ -215,6 +219,7 @@ npm start -- --web
 ### Common Issues
 
 1. **App won't start**
+
    ```bash
    # Clear cache and reinstall
    rm -rf node_modules
@@ -228,10 +233,11 @@ npm start -- --web
    - Restart development server
 
 3. **Build errors**
+
    ```bash
    # Clear Expo cache
    expo start --clear
-   
+
    # Reset Metro cache
    npx react-native start --reset-cache
    ```

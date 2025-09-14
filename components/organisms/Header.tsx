@@ -3,14 +3,15 @@
  * Complex component consisting of molecules and atoms
  */
 
+import type React from 'react';
+import { StyleSheet, type ViewStyle } from 'react-native';
+
 import { Button } from '@/components/atoms/Button';
 import { Heading3, Text } from '@/components/atoms/Text';
 import { ThemedView } from '@/components/themed-view';
 import { ComponentHeights, Sizes } from '@/constants/styles/spacing';
 import { Colors } from '@/constants/theme/colors';
 import { useColorScheme } from '@/hooks/use-color-scheme';
-import React from 'react';
-import { StyleSheet, ViewStyle } from 'react-native';
 
 export interface HeaderAction {
   /** Action icon */
@@ -74,11 +75,7 @@ export const Header: React.FC<HeaderProps> = ({
 
       {/* Center section */}
       <ThemedView style={styles.centerSection}>
-        {title && (
-          <Heading3 style={styles.title}>
-            {title}
-          </Heading3>
-        )}
+        {title && <Heading3 style={styles.title}>{title}</Heading3>}
         {subtitle && (
           <Text size="sm" color="muted" style={styles.subtitle}>
             {subtitle}
@@ -97,7 +94,7 @@ export const Header: React.FC<HeaderProps> = ({
             style={styles.actionButton}
           />
         )}
-        
+
         {actions.map((action, index) => (
           <Button
             key={index}
@@ -109,7 +106,9 @@ export const Header: React.FC<HeaderProps> = ({
             style={styles.actionButton}
           >
             {action.badge && (
-              <ThemedView style={[styles.badge, { backgroundColor: colors.error }]}>
+              <ThemedView
+                style={[styles.badge, { backgroundColor: colors.error }]}
+              >
                 <Text size="xs" color="default" style={styles.badgeText}>
                   {action.badge}
                 </Text>
@@ -131,44 +130,44 @@ const styles = StyleSheet.create({
     paddingHorizontal: Sizes.md,
     paddingTop: Sizes.sm,
   },
-  
+
   leftSection: {
     flexDirection: 'row',
     alignItems: 'center',
     minWidth: 60,
   },
-  
+
   centerSection: {
     flex: 1,
     alignItems: 'center',
     paddingHorizontal: Sizes.sm,
   },
-  
+
   rightSection: {
     flexDirection: 'row',
     alignItems: 'center',
     minWidth: 60,
     justifyContent: 'flex-end',
   },
-  
+
   backButton: {
     paddingHorizontal: Sizes.sm,
   },
-  
+
   title: {
     textAlign: 'center',
   },
-  
+
   subtitle: {
     textAlign: 'center',
     marginTop: 2,
   },
-  
+
   actionButton: {
     paddingHorizontal: Sizes.sm,
     marginLeft: Sizes.xs,
   },
-  
+
   badge: {
     position: 'absolute',
     top: -4,
@@ -180,7 +179,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 4,
   },
-  
+
   badgeText: {
     color: '#FFFFFF',
     fontSize: 10,

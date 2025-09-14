@@ -33,7 +33,8 @@ function toCamelCase(str) {
 }
 
 // Get all SVG files
-const svgFiles = fs.readdirSync(SVG_DIR)
+const svgFiles = fs
+  .readdirSync(SVG_DIR)
   .filter(file => file.endsWith('.svg'))
   .map(file => file.replace('.svg', ''));
 
@@ -49,7 +50,7 @@ svgFiles.forEach(iconName => {
   const componentName = toPascalCase(iconName);
   const fileName = `${iconName}.tsx`;
   const filePath = path.join(OUTPUT_DIR, fileName);
-  
+
   const componentContent = `/**
  * ${componentName} Icon Component
  * Automatically generated component for icon ${iconName}
@@ -85,11 +86,11 @@ export default ${componentName}Icon;
   // Write component file
   fs.writeFileSync(filePath, componentContent);
   generatedFiles.push(fileName);
-  
+
   // Add import and export
   imports.push(`import { ${componentName}Icon } from './${iconName}';`);
   exports.push(`export { ${componentName}Icon } from './${iconName}';`);
-  
+
   console.log(`✅ Generated component: ${fileName}`);
 });
 
@@ -106,9 +107,12 @@ ${imports.join('\n')}
 ${exports.join('\n')}
 
 // Export types
-${svgFiles.map(iconName => 
-  `export type { ${toPascalCase(iconName)}Props } from './${iconName}';`
-).join('\n')}
+${svgFiles
+  .map(
+    iconName =>
+      `export type { ${toPascalCase(iconName)}Props } from './${iconName}';`
+  )
+  .join('\n')}
 
 // List of all available icons
 export const AVAILABLE_ICONS = [
@@ -125,11 +129,25 @@ console.log(`✅ Generated index file: ${INDEX_FILE}`);
 const stats = {
   totalIcons: svgFiles.length,
   generatedFiles: generatedFiles.length,
-  categories: [...new Set(svgFiles.map(name => {
-    if (name.includes('chef') || name.includes('cooking') || name.includes('recipe')) return 'cooking';
-    if (name.includes('star') || name.includes('heart') || name.includes('search')) return 'ui';
-    return 'other';
-  }))],
+  categories: [
+    ...new Set(
+      svgFiles.map(name => {
+        if (
+          name.includes('chef') ||
+          name.includes('cooking') ||
+          name.includes('recipe')
+        )
+          return 'cooking';
+        if (
+          name.includes('star') ||
+          name.includes('heart') ||
+          name.includes('search')
+        )
+          return 'ui';
+        return 'other';
+      })
+    ),
+  ],
   files: generatedFiles,
 };
 

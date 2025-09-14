@@ -3,6 +3,9 @@
  * Useful for development and testing
  */
 
+import React, { useState } from 'react';
+import { ScrollView, StyleSheet } from 'react-native';
+
 import { Button } from '@/components/atoms/Button';
 import { Heading2, Text } from '@/components/atoms/Text';
 import { IconGrid } from '@/components/molecules/IconGrid';
@@ -11,13 +14,11 @@ import { ThemedView } from '@/components/themed-view';
 import { Sizes } from '@/constants/styles/spacing';
 import { Colors } from '@/constants/theme/colors';
 import { useColorScheme } from '@/hooks/use-color-scheme';
-import React, { useState } from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
 
 export default function IconsScreen() {
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme ?? 'light'];
-  
+
   const [showMode, setShowMode] = useState<'all' | 'svg' | 'system'>('all');
 
   const handleBack = () => {
@@ -36,7 +37,7 @@ export default function IconsScreen() {
         showBackButton
         onBackPress={handleBack}
       />
-      
+
       <ScrollView style={styles.content}>
         <ThemedView style={styles.section}>
           <Heading2 style={styles.sectionTitle}>Filters</Heading2>
@@ -74,7 +75,7 @@ export default function IconsScreen() {
             {showMode === 'svg' && 'SVG Icons'}
             {showMode === 'system' && 'System Icons'}
           </Heading2>
-          
+
           <IconGrid
             svgOnly={showMode === 'svg'}
             systemOnly={showMode === 'system'}
@@ -86,14 +87,17 @@ export default function IconsScreen() {
         <ThemedView style={styles.section}>
           <Heading2 style={styles.sectionTitle}>Information</Heading2>
           <Text style={styles.infoText}>
-            {showMode === 'all' && 'Showing all available icons: SVG and system.'}
-            {showMode === 'svg' && 'Showing only SVG icons created specifically for the application.'}
-            {showMode === 'system' && 'Showing only iOS/SF Symbols system icons.'}
+            {showMode === 'all' &&
+              'Showing all available icons: SVG and system.'}
+            {showMode === 'svg' &&
+              'Showing only SVG icons created specifically for the application.'}
+            {showMode === 'system' &&
+              'Showing only iOS/SF Symbols system icons.'}
           </Text>
-          
+
           <Text style={styles.infoText}>
-            SVG icons support color and size customization, 
-            system icons use standard platform colors and styles.
+            SVG icons support color and size customization, system icons use
+            standard platform colors and styles.
           </Text>
         </ThemedView>
       </ScrollView>

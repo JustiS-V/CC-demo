@@ -14,7 +14,7 @@ A modern React Native application for recipe management and AI-powered recipe ge
 
 ## 📱 Screenshots
 
-*Coming soon...*
+_Coming soon..._
 
 ## 🛠 Tech Stack
 
@@ -30,23 +30,27 @@ A modern React Native application for recipe management and AI-powered recipe ge
 ## 📦 Installation
 
 1. **Clone the repository:**
+
 ```bash
 git clone https://github.com/your-username/crazy-cooker.git
 cd crazy-cooker
 ```
 
 2. **Install dependencies:**
+
 ```bash
 npm install
 ```
 
 3. **Set up environment variables:**
+
 ```bash
 cp .env.example .env
 # Edit .env with your Firebase configuration
 ```
 
 4. **Start the development server:**
+
 ```bash
 npm start
 ```
@@ -54,12 +58,14 @@ npm start
 ## 🔧 Configuration
 
 ### Firebase Setup
+
 1. Create a Firebase project
 2. Enable Authentication (Email/Password and Phone)
 3. Copy your Firebase config to `.env`
 4. See [Firebase Setup Guide](./docs/firebase-setup.md) for detailed instructions
 
 ### Environment Variables
+
 ```env
 FIREBASE_API_KEY=your_api_key
 FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
@@ -150,6 +156,7 @@ npm run build      # Build for production
 ### Code Style
 
 The project uses:
+
 - TypeScript for type safety
 - ESLint for code linting
 - Prettier for code formatting

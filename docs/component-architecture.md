@@ -40,12 +40,13 @@ components/
 Basic building blocks of the interface. Cannot be divided further.
 
 ### Button
+
 ```typescript
 import { Button } from '@/components';
 
-<Button 
-  variant="primary" 
-  size="md" 
+<Button
+  variant="primary"
+  size="md"
   onPress={handlePress}
 >
   Click me
@@ -56,6 +57,7 @@ import { Button } from '@/components';
 **Sizes:** `sm`, `md`, `lg`
 
 ### Input
+
 ```typescript
 import { Input } from '@/components';
 
@@ -71,6 +73,7 @@ import { Input } from '@/components';
 **States:** `default`, `error`, `success`, `warning`
 
 ### Text
+
 ```typescript
 import { Text, Heading1, Body } from '@/components';
 
@@ -83,6 +86,7 @@ import { Text, Heading1, Body } from '@/components';
 **Colors:** `primary`, `secondary`, `success`, `warning`, `error`, `muted`
 
 ### Card
+
 ```typescript
 import { Card } from '@/components';
 
@@ -96,6 +100,7 @@ import { Card } from '@/components';
 Simple groups of atoms that perform a specific function.
 
 ### SearchBar
+
 ```typescript
 import { SearchBar } from '@/components';
 
@@ -108,6 +113,7 @@ import { SearchBar } from '@/components';
 ```
 
 ### RecipeCard
+
 ```typescript
 import { RecipeCard } from '@/components';
 
@@ -125,6 +131,7 @@ import { RecipeCard } from '@/components';
 ```
 
 ### TabButton
+
 ```typescript
 import { TabButton } from '@/components';
 
@@ -142,6 +149,7 @@ import { TabButton } from '@/components';
 Complex components consisting of molecules and atoms.
 
 ### Header
+
 ```typescript
 import { Header } from '@/components';
 
@@ -158,6 +166,7 @@ import { Header } from '@/components';
 ```
 
 ### TabBar
+
 ```typescript
 import { TabBar } from '@/components';
 
@@ -178,56 +187,60 @@ import { TabBar } from '@/components';
 ## 🎨 Design System
 
 ### Colors
+
 ```typescript
 import { Colors } from '@/constants';
 
 // Main colors
-Colors.light.primary    // #FF6B6B
-Colors.light.secondary  // #4ECDC4
-Colors.light.success    // #4CAF50
-Colors.light.warning    // #FF9800
-Colors.light.error      // #F44336
+Colors.light.primary; // #FF6B6B
+Colors.light.secondary; // #4ECDC4
+Colors.light.success; // #4CAF50
+Colors.light.warning; // #FF9800
+Colors.light.error; // #F44336
 
 // Recipe category colors
-RecipeCategoryColors.breakfast  // #FFD700
-RecipeCategoryColors.lunch      // #FF6B6B
-RecipeCategoryColors.dinner     // #4ECDC4
+RecipeCategoryColors.breakfast; // #FFD700
+RecipeCategoryColors.lunch; // #FF6B6B
+RecipeCategoryColors.dinner; // #4ECDC4
 ```
 
 ### Sizes
+
 ```typescript
 import { Sizes, ComponentHeights } from '@/constants';
 
-Sizes.xs    // 4px
-Sizes.sm    // 8px
-Sizes.md    // 16px
-Sizes.lg    // 24px
-Sizes.xl    // 32px
+Sizes.xs; // 4px
+Sizes.sm; // 8px
+Sizes.md; // 16px
+Sizes.lg; // 24px
+Sizes.xl; // 32px
 
-ComponentHeights.button.sm  // 32px
-ComponentHeights.button.md  // 44px
-ComponentHeights.button.lg  // 56px
+ComponentHeights.button.sm; // 32px
+ComponentHeights.button.md; // 44px
+ComponentHeights.button.lg; // 56px
 ```
 
 ### Typography
+
 ```typescript
 import { FontSizes, FontWeights, TextStyles } from '@/constants';
 
-FontSizes.xs    // 12px
-FontSizes.sm    // 14px
-FontSizes.base  // 16px
-FontSizes.lg    // 18px
-FontSizes.xl    // 20px
+FontSizes.xs; // 12px
+FontSizes.sm; // 14px
+FontSizes.base; // 16px
+FontSizes.lg; // 18px
+FontSizes.xl; // 20px
 
-FontWeights.normal    // '400'
-FontWeights.medium    // '500'
-FontWeights.semibold  // '600'
-FontWeights.bold      // '700'
+FontWeights.normal; // '400'
+FontWeights.medium; // '500'
+FontWeights.semibold; // '600'
+FontWeights.bold; // '700'
 ```
 
 ## 🔧 Usage
 
 ### Importing Components
+
 ```typescript
 // Import specific component
 import { Button, Input, Text } from '@/components';
@@ -240,6 +253,7 @@ import { SearchBar, RecipeCard } from '@/components/molecules';
 ```
 
 ### Creating Custom Components
+
 ```typescript
 import React from 'react';
 import { Button, Text } from '@/components';
@@ -261,6 +275,7 @@ export const CustomButton: React.FC<CustomButtonProps> = ({ title, onPress }) =>
 ## 📋 Best Practices
 
 ### 1. Composition over Inheritance
+
 ```typescript
 // ✅ Good - use existing components
 <Card>
@@ -274,6 +289,7 @@ export const CustomButton: React.FC<CustomButtonProps> = ({ title, onPress }) =>
 ```
 
 ### 2. Reuse Atoms
+
 ```typescript
 // ✅ Good - use base Button
 <Button variant="outline" size="sm">Cancel</Button>
@@ -285,6 +301,7 @@ export const CustomButton: React.FC<CustomButtonProps> = ({ title, onPress }) =>
 ```
 
 ### 3. Type Safety
+
 ```typescript
 // ✅ Good - use component types
 import { ButtonProps } from '@/components';
@@ -295,6 +312,7 @@ interface MyButtonProps extends ButtonProps {
 ```
 
 ### 4. Consistency
+
 ```typescript
 // ✅ Good - use constants
 import { Sizes, Colors } from '@/constants';
@@ -310,16 +328,19 @@ const styles = StyleSheet.create({
 ## 🚀 Extending the System
 
 ### Adding New Atom
+
 1. Create file in `components/atoms/`
 2. Add export to `components/atoms/index.ts`
 3. Update main export in `components/index.ts`
 
 ### Adding New Molecule
+
 1. Create file in `components/molecules/`
 2. Use existing atoms
 3. Add export to corresponding `index.ts`
 
 ### Adding New Organism
+
 1. Create file in `components/organisms/`
 2. Use molecules and atoms
 3. Add export to corresponding `index.ts`

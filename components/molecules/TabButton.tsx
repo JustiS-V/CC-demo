@@ -3,15 +3,17 @@
  * Specialized button for tab navigation
  */
 
-import { Button, ButtonProps } from '@/components/atoms/Button';
+import type React from 'react';
+import { StyleSheet, type ViewStyle } from 'react-native';
+
+import { Button, type ButtonProps } from '@/components/atoms/Button';
 import { Text } from '@/components/atoms/Text';
 import { BorderRadius, ComponentHeights } from '@/constants/styles/spacing';
 import { Colors } from '@/constants/theme/colors';
 import { useColorScheme } from '@/hooks/use-color-scheme';
-import React from 'react';
-import { StyleSheet, ViewStyle } from 'react-native';
 
-export interface TabButtonProps extends Omit<ButtonProps, 'children' | 'variant'> {
+export interface TabButtonProps
+  extends Omit<ButtonProps, 'children' | 'variant'> {
   /** Is button active */
   active?: boolean;
   /** Tab icon */
@@ -59,16 +61,16 @@ export const TabButton: React.FC<TabButtonProps> = ({
       leftIcon={icon}
     >
       {!iconOnly && label && (
-        <Text 
-          size="sm" 
-          weight="medium" 
+        <Text
+          size="sm"
+          weight="medium"
           color={active ? 'primary' : 'muted'}
           style={styles.label}
         >
           {label}
         </Text>
       )}
-      
+
       {badge && (
         <ThemedView style={[styles.badge, { backgroundColor: colors.error }]}>
           <Text size="xs" color="default" style={styles.badgeText}>
@@ -90,19 +92,19 @@ const styles = StyleSheet.create({
     borderRadius: BorderRadius.md,
     minHeight: ComponentHeights.button.sm,
   },
-  
+
   activeButton: {
     backgroundColor: 'rgba(255, 107, 107, 0.1)',
   },
-  
+
   iconOnlyButton: {
     paddingHorizontal: 8,
   },
-  
+
   label: {
     marginTop: 4,
   },
-  
+
   badge: {
     position: 'absolute',
     top: 4,
@@ -114,7 +116,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 4,
   },
-  
+
   badgeText: {
     color: '#FFFFFF',
     fontSize: 10,

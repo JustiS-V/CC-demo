@@ -3,7 +3,6 @@
  * Contains mappings, constants and helper functions
  */
 
-
 // Icon categories
 export const ICON_CATEGORIES = {
   COOKING: 'cooking',
@@ -122,10 +121,15 @@ export const DIFFICULTY_ICONS = {
 
 // Function to get recipe category icon
 export const getRecipeCategoryIcon = (category: string): string => {
-  return RECIPE_CATEGORY_ICONS[category as keyof typeof RECIPE_CATEGORY_ICONS] || 'questionmark.circle';
+  return (
+    RECIPE_CATEGORY_ICONS[category as keyof typeof RECIPE_CATEGORY_ICONS] ||
+    'questionmark.circle'
+  );
 };
 
 // Function to get recipe difficulty icon
 export const getDifficultyIcon = (difficulty: string): string => {
-  return DIFFICULTY_ICONS[difficulty as keyof typeof DIFFICULTY_ICONS] || 'star.fill';
+  return (
+    DIFFICULTY_ICONS[difficulty as keyof typeof DIFFICULTY_ICONS] || 'star.fill'
+  );
 };

@@ -1,18 +1,20 @@
-import { auth } from '@/lib/firebase';
 import {
-    PhoneAuthProvider,
-    RecaptchaVerifier,
-    User,
-    createUserWithEmailAndPassword,
-    onAuthStateChanged,
-    sendEmailVerification,
-    sendPasswordResetEmail,
-    signInWithCredential,
-    signInWithEmailAndPassword,
-    signInWithPhoneNumber,
-    signOut
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  PhoneAuthProvider,
+  RecaptchaVerifier,
+  sendEmailVerification,
+  sendPasswordResetEmail,
+  signInWithCredential,
+  signInWithEmailAndPassword,
+  signInWithPhoneNumber,
+  signOut,
+  type User,
 } from 'firebase/auth';
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import type React from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
+
+import { auth } from '@/lib/firebase';
 
 interface AuthContextType {
   user: User | null;
@@ -45,7 +47,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, user => {
       setUser(user);
       setLoading(false);
     });
@@ -99,11 +101,19 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     try {
       // For web version RecaptchaVerifier is needed
       // For mobile apps a different approach is used
-      const appVerifier = new RecaptchaVerifier('recaptcha-container', {
-        size: 'invisible',
-      }, auth);
+      const appVerifier = new RecaptchaVerifier(
+        'recaptcha-container',
+        {
+          size: 'invisible',
+        },
+        auth
+      );
 
-      const confirmationResult = await signInWithPhoneNumber(auth, phoneNumber, appVerifier);
+      const confirmationResult = await signInWithPhoneNumber(
+        auth,
+        phoneNumber,
+        appVerifier
+      );
       return confirmationResult.verificationId;
     } catch (error: any) {
       throw new Error(error.message);
@@ -131,9 +141,5 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     verifyPhoneCode,
   };
 
-  return (
-    <AuthContext.Provider value={value}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

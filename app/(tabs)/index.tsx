@@ -1,10 +1,11 @@
+import React from 'react';
+import { Alert, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
+
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
-import React from 'react';
-import { Alert, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 
 export default function RecipesScreen() {
   const colorScheme = useColorScheme();
@@ -58,16 +59,22 @@ export default function RecipesScreen() {
           Categories
         </ThemedText>
         <ThemedView style={styles.categoriesGrid}>
-          {categories.map((category) => (
+          {categories.map(category => (
             <TouchableOpacity
               key={category.id}
               style={[
                 styles.categoryCard,
                 { backgroundColor: category.color + '20' },
               ]}
-              onPress={() => Alert.alert(category.name, `Open category: ${category.name}`)}
+              onPress={() =>
+                Alert.alert(category.name, `Open category: ${category.name}`)
+              }
             >
-              <IconSymbol name={category.icon} size={32} color={category.color} />
+              <IconSymbol
+                name={category.icon}
+                size={32}
+                color={category.color}
+              />
               <ThemedText style={styles.categoryName}>
                 {category.name}
               </ThemedText>
@@ -80,7 +87,7 @@ export default function RecipesScreen() {
         <ThemedText type="subtitle" style={styles.sectionTitle}>
           Popular Recipes
         </ThemedText>
-        {popularRecipes.map((recipe) => (
+        {popularRecipes.map(recipe => (
           <TouchableOpacity
             key={recipe.id}
             style={[
@@ -90,24 +97,30 @@ export default function RecipesScreen() {
                 borderColor: Colors[colorScheme ?? 'light'].border,
               },
             ]}
-            onPress={() => Alert.alert(recipe.title, `Open recipe: ${recipe.title}`)}
+            onPress={() =>
+              Alert.alert(recipe.title, `Open recipe: ${recipe.title}`)
+            }
           >
-            <ThemedText style={styles.recipeEmoji}>
-              {recipe.image}
-            </ThemedText>
+            <ThemedText style={styles.recipeEmoji}>{recipe.image}</ThemedText>
             <ThemedView style={styles.recipeInfo}>
-              <ThemedText style={styles.recipeTitle}>
-                {recipe.title}
-              </ThemedText>
+              <ThemedText style={styles.recipeTitle}>{recipe.title}</ThemedText>
               <ThemedView style={styles.recipeMeta}>
                 <ThemedView style={styles.recipeMetaItem}>
-                  <IconSymbol name="clock" size={14} color={Colors[colorScheme ?? 'light'].tabIconDefault} />
+                  <IconSymbol
+                    name="clock"
+                    size={14}
+                    color={Colors[colorScheme ?? 'light'].tabIconDefault}
+                  />
                   <ThemedText style={styles.recipeMetaText}>
                     {recipe.time}
                   </ThemedText>
                 </ThemedView>
                 <ThemedView style={styles.recipeMetaItem}>
-                  <IconSymbol name="star.fill" size={14} color={Colors[colorScheme ?? 'light'].tabIconDefault} />
+                  <IconSymbol
+                    name="star.fill"
+                    size={14}
+                    color={Colors[colorScheme ?? 'light'].tabIconDefault}
+                  />
                   <ThemedText style={styles.recipeMetaText}>
                     {recipe.difficulty}
                   </ThemedText>

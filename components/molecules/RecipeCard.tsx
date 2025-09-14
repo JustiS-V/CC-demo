@@ -3,15 +3,16 @@
  * Consists of Card atom and recipe elements
  */
 
-import { Card, CardProps } from '@/components/atoms/Card';
+import type React from 'react';
+import { StyleSheet } from 'react-native';
+
+import { Card, type CardProps } from '@/components/atoms/Card';
 import { Icon } from '@/components/atoms/Icon';
 import { Caption, Text } from '@/components/atoms/Text';
 import { ThemedView } from '@/components/themed-view';
 import { Sizes } from '@/constants/styles/spacing';
 import { Colors, RecipeCategoryColors } from '@/constants/theme/colors';
 import { useColorScheme } from '@/hooks/use-color-scheme';
-import React from 'react';
-import { StyleSheet } from 'react-native';
 
 export interface Recipe {
   id: string;
@@ -91,15 +92,11 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
       {/* Recipe image */}
       <ThemedView style={styles.imageContainer}>
         {recipe.image ? (
-          <ThemedText style={styles.imagePlaceholder}>
-            🍳
-          </ThemedText>
+          <ThemedText style={styles.imagePlaceholder}>🍳</ThemedText>
         ) : (
-          <ThemedText style={styles.imagePlaceholder}>
-            🍽️
-          </ThemedText>
+          <ThemedText style={styles.imagePlaceholder}>🍽️</ThemedText>
         )}
-        
+
         {/* Favorite button */}
         {showFavoriteButton && (
           <ThemedView style={styles.favoriteButton}>
@@ -111,12 +108,12 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
             />
           </ThemedView>
         )}
-        
+
         {/* Category */}
-        <ThemedView 
+        <ThemedView
           style={[
             styles.categoryBadge,
-            { backgroundColor: RecipeCategoryColors[recipe.category] + '20' }
+            { backgroundColor: RecipeCategoryColors[recipe.category] + '20' },
           ]}
         >
           <Text size="xs" color="muted">
@@ -143,14 +140,8 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
         <ThemedView style={styles.meta}>
           {/* Cooking time */}
           <ThemedView style={styles.metaItem}>
-            <Icon
-              name="timer"
-              size={14}
-              color={colors.icon}
-            />
-            <Caption color="muted">
-              {recipe.cookingTime} min
-            </Caption>
+            <Icon name="timer" size={14} color={colors.icon} />
+            <Caption color="muted">{recipe.cookingTime} min</Caption>
           </ThemedView>
 
           {/* Difficulty */}
@@ -168,14 +159,8 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
           {/* Rating */}
           {recipe.rating && (
             <ThemedView style={styles.metaItem}>
-              <Icon
-                name="star"
-                size={14}
-                color={colors.warning}
-              />
-              <Caption color="muted">
-                {recipe.rating.toFixed(1)}
-              </Caption>
+              <Icon name="star" size={14} color={colors.warning} />
+              <Caption color="muted">{recipe.rating.toFixed(1)}</Caption>
             </ThemedView>
           )}
         </ThemedView>
@@ -195,7 +180,7 @@ const styles = StyleSheet.create({
   card: {
     marginBottom: Sizes.md,
   },
-  
+
   imageContainer: {
     height: 120,
     backgroundColor: '#F3F4F6',
@@ -204,11 +189,11 @@ const styles = StyleSheet.create({
     position: 'relative',
     marginBottom: Sizes.sm,
   },
-  
+
   imagePlaceholder: {
     fontSize: 48,
   },
-  
+
   favoriteButton: {
     position: 'absolute',
     top: Sizes.sm,
@@ -217,7 +202,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: Sizes.xs,
   },
-  
+
   categoryBadge: {
     position: 'absolute',
     top: Sizes.sm,
@@ -226,31 +211,31 @@ const styles = StyleSheet.create({
     paddingVertical: Sizes.xs,
     borderRadius: 12,
   },
-  
+
   content: {
     flex: 1,
   },
-  
+
   title: {
     marginBottom: Sizes.xs,
   },
-  
+
   description: {
     marginBottom: Sizes.sm,
   },
-  
+
   meta: {
     flexDirection: 'row',
     gap: Sizes.md,
     marginBottom: Sizes.sm,
   },
-  
+
   metaItem: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: Sizes.xs,
   },
-  
+
   author: {
     fontStyle: 'italic',
   },

@@ -1,3 +1,6 @@
+import React from 'react';
+import { Alert, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
+
 import { LanguageSwitcher } from '@/components/molecules/LanguageSwitcher';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
@@ -6,8 +9,6 @@ import { Colors } from '@/constants/theme';
 import { useAuth } from '@/contexts/AuthContext';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useColorScheme } from '@/hooks/use-color-scheme';
-import React from 'react';
-import { Alert, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 
 export default function ProfileScreen() {
   const colorScheme = useColorScheme();
@@ -19,54 +20,58 @@ export default function ProfileScreen() {
       id: 1,
       title: t('profile.myRecipes'),
       icon: 'book.fill',
-      onPress: () => Alert.alert(t('profile.myRecipes'), t('profile.myRecipesDescription')),
+      onPress: () =>
+        Alert.alert(t('profile.myRecipes'), t('profile.myRecipesDescription')),
     },
     {
       id: 2,
       title: t('profile.favorites'),
       icon: 'heart.fill',
-      onPress: () => Alert.alert(t('profile.favorites'), t('profile.favoritesDescription')),
+      onPress: () =>
+        Alert.alert(t('profile.favorites'), t('profile.favoritesDescription')),
     },
     {
       id: 3,
       title: t('profile.settings'),
       icon: 'gear',
-      onPress: () => Alert.alert(t('profile.settings'), t('profile.settingsDescription')),
+      onPress: () =>
+        Alert.alert(t('profile.settings'), t('profile.settingsDescription')),
     },
     {
       id: 4,
       title: t('profile.about'),
       icon: 'info.circle.fill',
-      onPress: () => Alert.alert(t('profile.about'), t('profile.aboutDescription')),
+      onPress: () =>
+        Alert.alert(t('profile.about'), t('profile.aboutDescription')),
     },
   ];
 
   const handleLogout = async () => {
-    Alert.alert(
-      t('profile.logout'), 
-      t('profile.logoutConfirm'),
-      [
-        { text: t('common.cancel'), style: 'cancel' },
-        { 
-          text: t('profile.logout'), 
-          style: 'destructive',
-          onPress: async () => {
-            try {
-              await logout();
-            } catch (error) {
-              Alert.alert(t('common.error'), t('profile.logoutError'));
-            }
+    Alert.alert(t('profile.logout'), t('profile.logoutConfirm'), [
+      { text: t('common.cancel'), style: 'cancel' },
+      {
+        text: t('profile.logout'),
+        style: 'destructive',
+        onPress: async () => {
+          try {
+            await logout();
+          } catch (error) {
+            Alert.alert(t('common.error'), t('profile.logoutError'));
           }
-        }
-      ]
-    );
+        },
+      },
+    ]);
   };
 
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <ThemedView style={styles.header}>
         <ThemedView style={styles.avatarContainer}>
-          <IconSymbol name="person.circle.fill" size={80} color={Colors[colorScheme ?? 'light'].tint} />
+          <IconSymbol
+            name="person.circle.fill"
+            size={80}
+            color={Colors[colorScheme ?? 'light'].tint}
+          />
         </ThemedView>
         <ThemedText type="title" style={styles.userName}>
           {user?.displayName || 'Chef'}
@@ -104,7 +109,7 @@ export default function ProfileScreen() {
       </ThemedView>
 
       <ThemedView style={styles.menuContainer}>
-        {menuItems.map((item) => (
+        {menuItems.map(item => (
           <TouchableOpacity
             key={item.id}
             style={[
@@ -121,9 +126,7 @@ export default function ProfileScreen() {
                 size={24}
                 color={Colors[colorScheme ?? 'light'].tint}
               />
-              <ThemedText style={styles.menuItemTitle}>
-                {item.title}
-              </ThemedText>
+              <ThemedText style={styles.menuItemTitle}>{item.title}</ThemedText>
             </ThemedView>
             <IconSymbol
               name="chevron.right"
@@ -142,16 +145,15 @@ export default function ProfileScreen() {
       </ThemedView>
 
       <TouchableOpacity
-        style={[
-          styles.logoutButton,
-          { backgroundColor: '#FF3B30' },
-        ]}
+        style={[styles.logoutButton, { backgroundColor: '#FF3B30' }]}
         onPress={handleLogout}
       >
-        <IconSymbol name="rectangle.portrait.and.arrow.right" size={20} color="white" />
-        <ThemedText style={styles.logoutText}>
-          {t('profile.logout')}
-        </ThemedText>
+        <IconSymbol
+          name="rectangle.portrait.and.arrow.right"
+          size={20}
+          color="white"
+        />
+        <ThemedText style={styles.logoutText}>{t('profile.logout')}</ThemedText>
       </TouchableOpacity>
     </ScrollView>
   );
