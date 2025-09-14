@@ -45,3 +45,6 @@ app-example
 
 # Cursor AI editor
 .cursor/
+
+# VS Code editor
+.vscode/
