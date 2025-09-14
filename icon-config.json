@@ -1,0 +1,25 @@
+{
+  "scripts": {
+    "generate-icons": "node scripts/generate-icons.js",
+    "icons:generate": "npm run generate-icons",
+    "icons:validate": "node scripts/validate-icons.js",
+    "icons:stats": "node scripts/icon-stats.js"
+  },
+  "iconGeneration": {
+    "svgDirectory": "assets/icons/svg",
+    "outputDirectory": "components/atoms/icons",
+    "templateDirectory": "scripts/templates",
+    "autoGenerate": true,
+    "watchMode": false,
+    "includeStats": true,
+    "includeTypes": true
+  },
+  "iconValidation": {
+    "checkSvgStructure": true,
+    "checkCurrentColor": true,
+    "checkViewBox": true,
+    "checkXmlns": true,
+    "minSize": 16,
+    "maxSize": 48
+  }
+}

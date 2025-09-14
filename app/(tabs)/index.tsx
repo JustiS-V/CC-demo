@@ -1,98 +1,209 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
-
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
+import { IconSymbol } from '@/components/ui/icon-symbol';
+import { Colors } from '@/constants/theme';
+import { useColorScheme } from '@/hooks/use-color-scheme';
+import React from 'react';
+import { Alert, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 
-export default function HomeScreen() {
+export default function RecipesScreen() {
+  const colorScheme = useColorScheme();
+
+  const categories = [
+    { id: 1, name: 'Breakfast', icon: 'sun.max.fill', color: '#FFD700' },
+    { id: 2, name: 'Lunch', icon: 'sun.max.fill', color: '#FF6B6B' },
+    { id: 3, name: 'Dinner', icon: 'moon.fill', color: '#4ECDC4' },
+    { id: 4, name: 'Desserts', icon: 'heart.fill', color: '#FF9FF3' },
+    { id: 5, name: 'Drinks', icon: 'drop.fill', color: '#54A0FF' },
+    { id: 6, name: 'Snacks', icon: 'leaf.fill', color: '#5F27CD' },
+  ];
+
+  const popularRecipes = [
+    {
+      id: 1,
+      title: 'Carbonara Pasta',
+      time: '20 min',
+      difficulty: 'Medium',
+      image: '🍝',
+    },
+    {
+      id: 2,
+      title: 'Caesar Salad',
+      time: '15 min',
+      difficulty: 'Easy',
+      image: '🥗',
+    },
+    {
+      id: 3,
+      title: 'Tiramisu',
+      time: '45 min',
+      difficulty: 'Hard',
+      image: '🍰',
+    },
+  ];
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
+    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+      <ThemedView style={styles.header}>
+        <ThemedText type="title" style={styles.headerTitle}>
+          Recipe Catalog
+        </ThemedText>
+        <ThemedText style={styles.headerSubtitle}>
+          Find the perfect recipe for any occasion
         </ThemedText>
       </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
+      <ThemedView style={styles.section}>
+        <ThemedText type="subtitle" style={styles.sectionTitle}>
+          Categories
         </ThemedText>
+        <ThemedView style={styles.categoriesGrid}>
+          {categories.map((category) => (
+            <TouchableOpacity
+              key={category.id}
+              style={[
+                styles.categoryCard,
+                { backgroundColor: category.color + '20' },
+              ]}
+              onPress={() => Alert.alert(category.name, `Open category: ${category.name}`)}
+            >
+              <IconSymbol name={category.icon} size={32} color={category.color} />
+              <ThemedText style={styles.categoryName}>
+                {category.name}
+              </ThemedText>
+            </TouchableOpacity>
+          ))}
+        </ThemedView>
       </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
+
+      <ThemedView style={styles.section}>
+        <ThemedText type="subtitle" style={styles.sectionTitle}>
+          Popular Recipes
         </ThemedText>
+        {popularRecipes.map((recipe) => (
+          <TouchableOpacity
+            key={recipe.id}
+            style={[
+              styles.recipeCard,
+              {
+                backgroundColor: Colors[colorScheme ?? 'light'].background,
+                borderColor: Colors[colorScheme ?? 'light'].border,
+              },
+            ]}
+            onPress={() => Alert.alert(recipe.title, `Open recipe: ${recipe.title}`)}
+          >
+            <ThemedText style={styles.recipeEmoji}>
+              {recipe.image}
+            </ThemedText>
+            <ThemedView style={styles.recipeInfo}>
+              <ThemedText style={styles.recipeTitle}>
+                {recipe.title}
+              </ThemedText>
+              <ThemedView style={styles.recipeMeta}>
+                <ThemedView style={styles.recipeMetaItem}>
+                  <IconSymbol name="clock" size={14} color={Colors[colorScheme ?? 'light'].tabIconDefault} />
+                  <ThemedText style={styles.recipeMetaText}>
+                    {recipe.time}
+                  </ThemedText>
+                </ThemedView>
+                <ThemedView style={styles.recipeMetaItem}>
+                  <IconSymbol name="star.fill" size={14} color={Colors[colorScheme ?? 'light'].tabIconDefault} />
+                  <ThemedText style={styles.recipeMetaText}>
+                    {recipe.difficulty}
+                  </ThemedText>
+                </ThemedView>
+              </ThemedView>
+            </ThemedView>
+            <IconSymbol
+              name="chevron.right"
+              size={16}
+              color={Colors[colorScheme ?? 'light'].tabIconDefault}
+            />
+          </TouchableOpacity>
+        ))}
       </ThemedView>
-    </ParallaxScrollView>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  container: {
+    flex: 1,
   },
-  stepContainer: {
-    gap: 8,
+  header: {
+    padding: 20,
+    paddingTop: 60,
+    alignItems: 'center',
+  },
+  headerTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
     marginBottom: 8,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  headerSubtitle: {
+    fontSize: 16,
+    opacity: 0.7,
+    textAlign: 'center',
+  },
+  section: {
+    paddingHorizontal: 20,
+    marginBottom: 30,
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    marginBottom: 16,
+  },
+  categoriesGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 12,
+  },
+  categoryCard: {
+    width: '30%',
+    aspectRatio: 1,
+    borderRadius: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 8,
+  },
+  categoryName: {
+    fontSize: 12,
+    fontWeight: '500',
+    marginTop: 8,
+    textAlign: 'center',
+  },
+  recipeCard: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 16,
+    marginBottom: 12,
+    borderRadius: 12,
+    borderWidth: 1,
+  },
+  recipeEmoji: {
+    fontSize: 32,
+    marginRight: 16,
+  },
+  recipeInfo: {
+    flex: 1,
+  },
+  recipeTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    marginBottom: 8,
+  },
+  recipeMeta: {
+    flexDirection: 'row',
+    gap: 16,
+  },
+  recipeMetaItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+  },
+  recipeMetaText: {
+    fontSize: 12,
+    opacity: 0.7,
   },
 });
