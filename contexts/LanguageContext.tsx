@@ -4,13 +4,12 @@
  */
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import type React from 'react';
-import {
+import React, {
   createContext,
-  type ReactNode,
   useContext,
   useEffect,
   useState,
+  type ReactNode,
 } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -20,7 +19,7 @@ interface LanguageContextType {
   currentLanguage: LanguageCode;
   availableLanguages: typeof LANGUAGES;
   changeLanguage: (language: LanguageCode) => Promise<void>;
-  t: (key: string, options?: any) => string;
+  t: (key: string, options?: Record<string, unknown>) => string;
   isRTL: boolean;
 }
 
@@ -43,25 +42,24 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({
 
   // Load saved language on app start
   useEffect(() => {
+    const loadSavedLanguage = async () => {
+      try {
+        const savedLanguage = await AsyncStorage.getItem(LANGUAGE_STORAGE_KEY);
+        if (savedLanguage && savedLanguage in LANGUAGES) {
+          setCurrentLanguage(savedLanguage as LanguageCode);
+          await i18n.changeLanguage(savedLanguage);
+        }
+      } catch {
+        // Error loading saved language
+      }
+    };
     loadSavedLanguage();
-  }, []);
+  }, [i18n]);
 
   // Update RTL status when language changes
   useEffect(() => {
     setIsRTL(currentLanguage === 'ar' || currentLanguage === 'he'); // Add RTL languages if needed
   }, [currentLanguage]);
-
-  const loadSavedLanguage = async () => {
-    try {
-      const savedLanguage = await AsyncStorage.getItem(LANGUAGE_STORAGE_KEY);
-      if (savedLanguage && savedLanguage in LANGUAGES) {
-        setCurrentLanguage(savedLanguage as LanguageCode);
-        await i18n.changeLanguage(savedLanguage);
-      }
-    } catch (error) {
-      console.error('Error loading saved language:', error);
-    }
-  };
 
   const changeLanguage = async (language: LanguageCode) => {
     try {
@@ -73,10 +71,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({
 
       // Save to storage
       await AsyncStorage.setItem(LANGUAGE_STORAGE_KEY, language);
-
-      console.log(`Language changed to: ${language}`);
     } catch (error) {
-      console.error('Error changing language:', error);
       throw error;
     }
   };
@@ -105,12 +100,14 @@ export const useLanguage = (): LanguageContextType => {
 };
 
 // Hook for easy translation
-export const useTranslation = () => {
+export const useAppTranslation = () => {
   const { t } = useLanguage();
   return { t };
 };
 
 // Utility function for translation outside components
-export const translate = (key: string, options?: any): string => {
-  return i18n.t(key, options);
+export const translate = (key: string): string => {
+  // This function should be used carefully as it doesn't have access to the current language context
+  // Consider using useLanguage hook instead
+  return key; // Fallback to key for now
 };

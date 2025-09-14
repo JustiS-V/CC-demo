@@ -1,23 +1,18 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
 
-import { HapticTab } from '@/components/haptic-tab';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Colors } from '@/constants/theme';
-import { useLanguage } from '@/contexts/LanguageContext';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
-  const { t } = useLanguage();
 
   return (
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
-        tabBarButton: HapticTab,
         tabBarStyle: {
           backgroundColor: Colors[colorScheme ?? 'light'].background,
           borderTopColor: Colors[colorScheme ?? 'light'].border,
@@ -28,61 +23,32 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
-        name="index"
+        name='index'
         options={{
-          title: t('navigation.catalog'),
+          title: 'Главная',
           tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="book.fill" color={color} />
+            <IconSymbol size={28} name='house' color={color} />
           ),
         }}
       />
       <Tabs.Screen
-        name="chat"
+        name='chat'
         options={{
-          title: '',
+          title: 'Чат',
           tabBarIcon: ({ color }) => (
-            <View style={styles.chatButton}>
-              <IconSymbol size={32} name="plus.message.fill" color="white" />
-            </View>
-          ),
-          tabBarButton: props => (
-            <View style={styles.chatButtonContainer}>
-              <HapticTab {...props} />
-            </View>
+            <IconSymbol size={28} name='message' color={color} />
           ),
         }}
       />
       <Tabs.Screen
-        name="profile"
+        name='profile'
         options={{
-          title: t('navigation.profile'),
+          title: 'Профиль',
           tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="person.fill" color={color} />
+            <IconSymbol size={28} name='person' color={color} />
           ),
         }}
       />
     </Tabs>
   );
 }
-
-const styles = StyleSheet.create({
-  chatButton: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-    backgroundColor: '#FF6B6B',
-    justifyContent: 'center',
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    elevation: 8,
-  },
-  chatButtonContainer: {
-    marginTop: -10,
-  },
-});
